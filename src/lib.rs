@@ -1,5 +1,4 @@
-#![warn(clippy::all, clippy::pedantic)]
-#![feature(proc_macro_hygiene)]
+#![warn(clippy::all, clippy::pedantic, clippy::nursery)]
 
 mod cache;
 mod pokeapi;

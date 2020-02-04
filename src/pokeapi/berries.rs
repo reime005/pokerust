@@ -1,14 +1,9 @@
 use serde::{Deserialize, Serialize};
 
-use super::utility::NamedApiResource;
+use super::utility::*;
 
 use crate::cache::get_resource;
-
-#[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
-pub struct BerryFlavorMap {
-    potency: u64,
-    flavor: NamedApiResource,
-}
+use crate::from_id_and_name;
 
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 pub struct Berry {
@@ -20,18 +15,41 @@ pub struct Berry {
     pub size: u64,
     pub smoothness: u64,
     pub soil_dryness: u64,
-    pub firmness: NamedApiResource,
+    pub firmness: NamedAPIResource,
     pub flavors: Vec<BerryFlavorMap>,
-    pub item: NamedApiResource,
-    pub natural_gift_type: NamedApiResource,
+    pub item: NamedAPIResource,
+    pub natural_gift_type: NamedAPIResource,
 }
 
-impl Berry {
-    pub fn from_id(id: u64) -> Result<Self, minreq::Error> {
-        get_resource(&format!("berry/{}/", id))?.json::<Self>()
-    }
-
-    pub fn from_name(name: &str) -> Result<Self, minreq::Error> {
-        get_resource(&format!("berry/{}/", name))?.json::<Self>()
-    }
+#[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
+pub struct BerryFlavorMap {
+    pub potency: u64,
+    pub flavor: NamedAPIResource,
 }
+
+#[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
+pub struct BerryFirmness {
+    pub id: u64,
+    pub name: String,
+    pub berries: Vec<NamedAPIResource>,
+    pub names: Vec<Name>,
+}
+
+#[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
+pub struct BerryFlavor {
+    pub id: u64,
+    pub name: String,
+    pub berries: Vec<FlavorBerryMap>,
+    pub contest_type: NamedAPIResource,
+    pub names: Vec<Name>,
+}
+
+#[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
+pub struct FlavorBerryMap {
+    pub potency: u64,
+    pub berry: NamedAPIResource,
+}
+
+from_id_and_name!(Berry, "berry");
+from_id_and_name!(BerryFirmness, "berry-firmness");
+from_id_and_name!(BerryFlavor, "berry-flavor");

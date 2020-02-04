@@ -3,4 +3,7 @@
 mod cache;
 mod pokeapi;
 
+#[macro_use]
+mod util;
+
 pub use pokeapi::berries::*;

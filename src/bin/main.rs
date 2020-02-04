@@ -1,4 +1,4 @@
-use pokerust::Berry;
+use pokerust::{Berry, FromId};
 
 use std::ops::Rem;
 

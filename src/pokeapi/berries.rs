@@ -3,7 +3,8 @@ use serde::{Deserialize, Serialize};
 use super::utility::*;
 
 use crate::cache::get_resource;
-use crate::from_id_and_name;
+use crate::impl_from_id_and_name;
+use crate::{FromId, FromName};
 
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 pub struct Berry {
@@ -50,6 +51,6 @@ pub struct FlavorBerryMap {
     pub berry: NamedAPIResource,
 }
 
-from_id_and_name!(Berry, "berry");
-from_id_and_name!(BerryFirmness, "berry-firmness");
-from_id_and_name!(BerryFlavor, "berry-flavor");
+impl_from_id_and_name!(Berry, "berry");
+impl_from_id_and_name!(BerryFirmness, "berry-firmness");
+impl_from_id_and_name!(BerryFlavor, "berry-flavor");

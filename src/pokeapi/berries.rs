@@ -2,9 +2,7 @@ use serde::{Deserialize, Serialize};
 
 use super::utility::*;
 
-use crate::cache::get_resource;
 use crate::impl_from_id_and_name;
-use crate::{FromId, FromName};
 
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 pub struct Berry {

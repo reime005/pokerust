@@ -1,5 +1,6 @@
 use serde::{Deserialize, Serialize};
 
+use super::resource_lists::*;
 use super::utility::*;
 
 use crate::{impl_id_and_named, set_endpoint};
@@ -31,9 +32,17 @@ pub struct EncounterConditionValue {
     pub names: Vec<Name>,
 }
 
-set_endpoint!(EncounterMethod, "encounter-method");
-set_endpoint!(EncounterCondition, "encounter-condition");
-set_endpoint!(EncounterConditionValue, "encounter-condition-value");
+set_endpoint!(EncounterMethod, NamedAPIResourceList, "encounter-method");
+set_endpoint!(
+    EncounterCondition,
+    NamedAPIResourceList,
+    "encounter-condition"
+);
+set_endpoint!(
+    EncounterConditionValue,
+    NamedAPIResourceList,
+    "encounter-condition-value"
+);
 
 impl_id_and_named!(EncounterMethod);
 impl_id_and_named!(EncounterCondition);

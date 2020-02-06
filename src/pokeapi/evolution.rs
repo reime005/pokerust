@@ -1,5 +1,6 @@
 use serde::{Deserialize, Serialize};
 
+use super::resource_lists::*;
 use super::utility::*;
 
 use crate::{impl_id, impl_id_and_named, set_endpoint};
@@ -53,8 +54,8 @@ pub struct EvolutionTrigger {
     pub pokemon_species: Vec<NamedAPIResource>,
 }
 
-set_endpoint!(EvolutionChain, "evolution-chain");
-set_endpoint!(EvolutionTrigger, "evolution-trigger");
+set_endpoint!(EvolutionChain, APIResourceList, "evolution-chain");
+set_endpoint!(EvolutionTrigger, NamedAPIResourceList, "evolution-trigger");
 
 impl_id!(EvolutionChain);
 impl_id_and_named!(EvolutionTrigger);

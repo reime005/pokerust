@@ -1,25 +1,15 @@
-#![warn(clippy::all, clippy::pedantic, clippy::nursery)]
-
-use mockito::mock;
-use mockito::Mock;
 use pokerust::*;
 
-fn make_mock(loc: &str, json: &str) -> Mock {
-    mock("GET", loc)
-        .with_status(200)
-        .with_header("content-type", "application/json; charset=utf-8")
-        .with_body(json)
-        .create()
-}
+mod common;
 
 fn test_from_id<T: FromId>(id: i64, json: &str) {
-    let _m = make_mock(&format!("/api/v2/{}/{}/", T::ENDPOINT, id), json);
-    let _ = T::from_id(id).unwrap();
+    let _m = common::make_mock(&format!("/api/v2/{}/{}/", T::ENDPOINT, id), json);
+    T::from_id(id).unwrap();
 }
 
 fn test_from_name<T: FromName>(name: &str, json: &str) {
-    let _m = make_mock(&format!("/api/v2/{}/{}/", T::ENDPOINT, name), json);
-    let _ = T::from_name(name).unwrap();
+    let _m = common::make_mock(&format!("/api/v2/{}/{}/", T::ENDPOINT, name), json);
+    T::from_name(name).unwrap();
 }
 
 // https://pokeapi.co/api/v2/berry/2/
@@ -390,6 +380,19 @@ fn move_damage_class_from_id() {
 #[test]
 fn move_damage_class_from_name() {
     test_from_name::<MoveDamageClass>("special", SPECIAL_JSON);
+}
+
+// https://pokeapi.co/api/v2/move-learn-method/2/
+static EGG_JSON: &str = r#"{"descriptions":[{"description":"Appears on a newly-hatched Pokémon, if the father had the same move.","language":{"name":"en","url":"https://pokeapi.co/api/v2/language/9/"}},{"description":"Aparece en un Pokémon recién nacido, si el padre tuvo el mismo movimiento.","language":{"name":"es","url":"https://pokeapi.co/api/v2/language/7/"}},{"description":"Erscheint bei einem frisch geschlüpften Pokémon, wenn der Vater die selbe Fähigkeit hatte.","language":{"name":"de","url":"https://pokeapi.co/api/v2/language/6/"}}],"id":2,"name":"egg","names":[{"language":{"name":"de","url":"https://pokeapi.co/api/v2/language/6/"},"name":"Ei"},{"language":{"name":"es","url":"https://pokeapi.co/api/v2/language/7/"},"name":"Huevo"},{"language":{"name":"en","url":"https://pokeapi.co/api/v2/language/9/"},"name":"Egg"}],"version_groups":[{"name":"gold-silver","url":"https://pokeapi.co/api/v2/version-group/3/"},{"name":"crystal","url":"https://pokeapi.co/api/v2/version-group/4/"},{"name":"ruby-sapphire","url":"https://pokeapi.co/api/v2/version-group/5/"},{"name":"emerald","url":"https://pokeapi.co/api/v2/version-group/6/"},{"name":"firered-leafgreen","url":"https://pokeapi.co/api/v2/version-group/7/"},{"name":"diamond-pearl","url":"https://pokeapi.co/api/v2/version-group/8/"},{"name":"platinum","url":"https://pokeapi.co/api/v2/version-group/9/"},{"name":"heartgold-soulsilver","url":"https://pokeapi.co/api/v2/version-group/10/"},{"name":"black-white","url":"https://pokeapi.co/api/v2/version-group/11/"},{"name":"black-2-white-2","url":"https://pokeapi.co/api/v2/version-group/14/"},{"name":"x-y","url":"https://pokeapi.co/api/v2/version-group/15/"},{"name":"omega-ruby-alpha-sapphire","url":"https://pokeapi.co/api/v2/version-group/16/"},{"name":"sun-moon","url":"https://pokeapi.co/api/v2/version-group/17/"},{"name":"ultra-sun-ultra-moon","url":"https://pokeapi.co/api/v2/version-group/18/"}]}"#;
+
+#[test]
+fn move_learn_method_from_id() {
+    test_from_id::<MoveLearnMethod>(2, EGG_JSON);
+}
+
+#[test]
+fn move_learn_method_from_name() {
+    test_from_name::<MoveLearnMethod>("egg", EGG_JSON);
 }
 
 // https://pokeapi.co/api/v2/move-target/7/

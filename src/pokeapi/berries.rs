@@ -1,5 +1,6 @@
 use serde::{Deserialize, Serialize};
 
+use super::resource_lists::*;
 use super::utility::*;
 
 use crate::{impl_id_and_named, set_endpoint};
@@ -54,9 +55,9 @@ pub struct FlavorBerryMap {
     pub berry: NamedAPIResource,
 }
 
-set_endpoint!(Berry, "berry");
-set_endpoint!(BerryFirmness, "berry-firmness");
-set_endpoint!(BerryFlavor, "berry-flavor");
+set_endpoint!(Berry, NamedAPIResourceList, "berry");
+set_endpoint!(BerryFirmness, NamedAPIResourceList, "berry-firmness");
+set_endpoint!(BerryFlavor, NamedAPIResourceList, "berry-flavor");
 
 impl_id_and_named!(Berry);
 impl_id_and_named!(BerryFirmness);

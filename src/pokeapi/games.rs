@@ -1,5 +1,6 @@
 use serde::{Deserialize, Serialize};
 
+use super::resource_lists::*;
 use super::utility::*;
 
 use crate::{impl_id_and_named, set_endpoint};
@@ -60,10 +61,10 @@ pub struct VersionGroup {
     pub versions: Vec<NamedAPIResource>,
 }
 
-set_endpoint!(Generation, "generation");
-set_endpoint!(Pokedex, "pokedex");
-set_endpoint!(Version, "version");
-set_endpoint!(VersionGroup, "version-group");
+set_endpoint!(Generation, NamedAPIResourceList, "generation");
+set_endpoint!(Pokedex, NamedAPIResourceList, "pokedex");
+set_endpoint!(Version, NamedAPIResourceList, "version");
+set_endpoint!(VersionGroup, NamedAPIResourceList, "version-group");
 
 impl_id_and_named!(Generation);
 impl_id_and_named!(Pokedex);

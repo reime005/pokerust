@@ -1,6 +1,7 @@
 use serde::{Deserialize, Serialize};
 
 use super::pokemon::AbilityEffectChange;
+use super::resource_lists::*;
 use super::utility::*;
 
 use crate::{impl_id_and_named, set_endpoint};
@@ -151,16 +152,18 @@ pub struct MoveTarget {
     pub names: Vec<Name>,
 }
 
-set_endpoint!(Move, "move");
-set_endpoint!(MoveAilment, "move-ailment");
-set_endpoint!(MoveBattleStyle, "move-battle-style");
-set_endpoint!(MoveCategory, "move-category");
-set_endpoint!(MoveDamageClass, "move-damage-class");
-set_endpoint!(MoveTarget, "move-target");
+set_endpoint!(Move, NamedAPIResourceList, "move");
+set_endpoint!(MoveAilment, NamedAPIResourceList, "move-ailment");
+set_endpoint!(MoveBattleStyle, NamedAPIResourceList, "move-battle-style");
+set_endpoint!(MoveCategory, NamedAPIResourceList, "move-category");
+set_endpoint!(MoveDamageClass, NamedAPIResourceList, "move-damage-class");
+set_endpoint!(MoveLearnMethod, NamedAPIResourceList, "move-learn-method");
+set_endpoint!(MoveTarget, NamedAPIResourceList, "move-target");
 
 impl_id_and_named!(Move);
 impl_id_and_named!(MoveAilment);
 impl_id_and_named!(MoveBattleStyle);
 impl_id_and_named!(MoveCategory);
 impl_id_and_named!(MoveDamageClass);
+impl_id_and_named!(MoveLearnMethod);
 impl_id_and_named!(MoveTarget);

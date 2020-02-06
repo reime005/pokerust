@@ -22,7 +22,11 @@ pub use pokeapi::resource_lists::*;
 pub use pokeapi::utility::*;
 
 pub trait Endpoint {
+    type ResourceListKind;
+
     const ENDPOINT: &'static str;
+
+    fn list(offset: usize, limit: usize) -> Result<Self::ResourceListKind, ::minreq::Error>;
 }
 
 pub trait Named {

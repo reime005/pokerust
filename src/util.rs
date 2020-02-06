@@ -1,8 +1,14 @@
 #[macro_export]
 macro_rules! set_endpoint {
-    { $A:ty, $B:literal } => {
+    { $A:ty, $B:ty, $C:literal } => {
 impl crate::Endpoint for $A {
-    const ENDPOINT: &'static str = $B;
+    type ResourceListKind = $B;
+
+    const ENDPOINT: &'static str = $C;
+
+    fn list(offset: usize, limit: usize) -> Result<Self::ResourceListKind, ::minreq::Error> {
+        crate::cache::get_resource(&format!("{}/?offset={}&limit={}", Self::ENDPOINT, offset, limit))?.json::<Self::ResourceListKind>()
+    }
 }
 };
 }

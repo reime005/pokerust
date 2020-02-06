@@ -1,5 +1,6 @@
 use serde::{Deserialize, Serialize};
 
+use super::resource_lists::*;
 use super::utility::*;
 
 use crate::{impl_id_and_named, set_endpoint};
@@ -77,10 +78,10 @@ pub struct Region {
     pub version_groups: Vec<NamedAPIResource>,
 }
 
-set_endpoint!(Location, "location");
-set_endpoint!(LocationArea, "location-area");
-set_endpoint!(PalParkArea, "pal-park-area");
-set_endpoint!(Region, "region");
+set_endpoint!(Location, NamedAPIResourceList, "location");
+set_endpoint!(LocationArea, NamedAPIResourceList, "location-area");
+set_endpoint!(PalParkArea, NamedAPIResourceList, "pal-park-area");
+set_endpoint!(Region, NamedAPIResourceList, "region");
 
 impl_id_and_named!(Location);
 impl_id_and_named!(LocationArea);

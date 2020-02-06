@@ -1,5 +1,6 @@
 use serde::{Deserialize, Serialize};
 
+use super::resource_lists::*;
 use super::utility::*;
 
 use crate::{impl_id_and_named, set_endpoint};
@@ -82,11 +83,11 @@ pub struct ItemPocket {
     pub names: Vec<Name>,
 }
 
-set_endpoint!(Item, "item");
-set_endpoint!(ItemAttribute, "item-attribute");
-set_endpoint!(ItemCategory, "item-category");
-set_endpoint!(ItemFlingEffect, "item-fling-effect");
-set_endpoint!(ItemPocket, "item-pocket");
+set_endpoint!(Item, NamedAPIResourceList, "item");
+set_endpoint!(ItemAttribute, NamedAPIResourceList, "item-attribute");
+set_endpoint!(ItemCategory, NamedAPIResourceList, "item-category");
+set_endpoint!(ItemFlingEffect, NamedAPIResourceList, "item-fling-effect");
+set_endpoint!(ItemPocket, NamedAPIResourceList, "item-pocket");
 
 impl_id_and_named!(Item);
 impl_id_and_named!(ItemAttribute);

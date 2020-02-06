@@ -1,5 +1,6 @@
 use serde::{Deserialize, Serialize};
 
+use super::resource_lists::*;
 use super::utility::*;
 
 use crate::{impl_id, impl_id_and_named, set_endpoint};
@@ -431,21 +432,21 @@ pub struct TypeRelations {
     pub double_damage_from: Vec<NamedAPIResource>,
 }
 
-set_endpoint!(Ability, "ability");
-set_endpoint!(Characteristic, "characteristic");
-set_endpoint!(EggGroup, "egg-group");
-set_endpoint!(Gender, "gender");
-set_endpoint!(GrowthRate, "growth-rate");
-set_endpoint!(Nature, "nature");
-set_endpoint!(PokeathlonStat, "pokeathlon-stat");
-set_endpoint!(Pokemon, "pokemon");
-set_endpoint!(PokemonColor, "pokemon-color");
-set_endpoint!(PokemonForm, "pokemon-form");
-set_endpoint!(PokemonHabitat, "pokemon-habitat");
-set_endpoint!(PokemonShape, "pokemon-shape");
-set_endpoint!(PokemonSpecies, "pokemon-species");
-set_endpoint!(Stat, "stat");
-set_endpoint!(Type, "type");
+set_endpoint!(Ability, NamedAPIResourceList, "ability");
+set_endpoint!(Characteristic, APIResourceList, "characteristic");
+set_endpoint!(EggGroup, NamedAPIResourceList, "egg-group");
+set_endpoint!(Gender, NamedAPIResourceList, "gender");
+set_endpoint!(GrowthRate, NamedAPIResourceList, "growth-rate");
+set_endpoint!(Nature, NamedAPIResourceList, "nature");
+set_endpoint!(PokeathlonStat, NamedAPIResourceList, "pokeathlon-stat");
+set_endpoint!(Pokemon, NamedAPIResourceList, "pokemon");
+set_endpoint!(PokemonColor, NamedAPIResourceList, "pokemon-color");
+set_endpoint!(PokemonForm, NamedAPIResourceList, "pokemon-form");
+set_endpoint!(PokemonHabitat, NamedAPIResourceList, "pokemon-habitat");
+set_endpoint!(PokemonShape, NamedAPIResourceList, "pokemon-shape");
+set_endpoint!(PokemonSpecies, NamedAPIResourceList, "pokemon-species");
+set_endpoint!(Stat, NamedAPIResourceList, "stat");
+set_endpoint!(Type, NamedAPIResourceList, "type");
 
 impl_id!(Characteristic);
 impl_id_and_named!(Ability);

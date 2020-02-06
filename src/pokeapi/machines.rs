@@ -1,5 +1,6 @@
 use serde::{Deserialize, Serialize};
 
+use super::resource_lists::*;
 use super::utility::*;
 
 use crate::{impl_id, set_endpoint};
@@ -14,6 +15,6 @@ pub struct Machine {
     pub version_group: NamedAPIResource,
 }
 
-set_endpoint!(Machine, "machine");
+set_endpoint!(Machine, APIResourceList, "machine");
 
 impl_id!(Machine);

@@ -1,5 +1,6 @@
 use serde::{Deserialize, Serialize};
 
+use super::resource_lists::*;
 use super::utility::*;
 
 use crate::{impl_id, impl_id_and_named, set_endpoint};
@@ -40,9 +41,9 @@ pub struct SuperContestEffect {
     pub moves: Vec<NamedAPIResource>,
 }
 
-set_endpoint!(ContestEffect, "contest-effect");
-set_endpoint!(SuperContestEffect, "super-contest-effect");
-set_endpoint!(ContestType, "contest-type");
+set_endpoint!(ContestEffect, APIResourceList, "contest-effect");
+set_endpoint!(SuperContestEffect, APIResourceList, "super-contest-effect");
+set_endpoint!(ContestType, NamedAPIResourceList, "contest-type");
 
 impl_id!(ContestEffect);
 impl_id!(SuperContestEffect);

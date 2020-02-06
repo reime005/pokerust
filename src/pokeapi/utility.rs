@@ -2,6 +2,8 @@ use serde::{Deserialize, Serialize};
 
 use crate::{impl_id_and_named, impl_named, set_endpoint};
 
+use super::resource_lists::*;
+
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 pub struct Language {
@@ -110,7 +112,7 @@ pub struct VersionGroupFlavorText {
     pub version_group: NamedAPIResource,
 }
 
-set_endpoint!(Language, "language");
+set_endpoint!(Language, NamedAPIResourceList, "language");
 
 impl_named!(Name);
 impl_named!(NamedAPIResource);

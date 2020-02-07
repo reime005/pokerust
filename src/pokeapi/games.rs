@@ -1,5 +1,8 @@
 use serde::{Deserialize, Serialize};
 
+use super::locations::*;
+use super::moves::*;
+use super::pokemon::*;
 use super::resource_lists::*;
 use super::utility::*;
 
@@ -10,13 +13,13 @@ use crate::{impl_id_and_named, set_endpoint};
 pub struct Generation {
     pub id: i64,
     pub name: String,
-    pub abilities: Vec<NamedAPIResource>,
+    pub abilities: Vec<NamedAPIResource<Ability>>,
     pub names: Vec<Name>,
-    pub main_region: NamedAPIResource,
-    pub moves: Vec<NamedAPIResource>,
-    pub pokemon_species: Vec<NamedAPIResource>,
-    pub types: Vec<NamedAPIResource>,
-    pub version_groups: Vec<NamedAPIResource>,
+    pub main_region: NamedAPIResource<Region>,
+    pub moves: Vec<NamedAPIResource<Move>>,
+    pub pokemon_species: Vec<NamedAPIResource<PokemonSpecies>>,
+    pub types: Vec<NamedAPIResource<Type>>,
+    pub version_groups: Vec<NamedAPIResource<VersionGroup>>,
 }
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
@@ -28,15 +31,15 @@ pub struct Pokedex {
     pub descriptions: Vec<Description>,
     pub names: Vec<Name>,
     pub pokemon_entries: Vec<PokemonEntry>,
-    pub region: Option<NamedAPIResource>,
-    pub version_groups: Vec<NamedAPIResource>,
+    pub region: Option<NamedAPIResource<Region>>,
+    pub version_groups: Vec<NamedAPIResource<VersionGroup>>,
 }
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 pub struct PokemonEntry {
     pub entry_number: u64,
-    pub pokemon_species: NamedAPIResource,
+    pub pokemon_species: NamedAPIResource<PokemonSpecies>,
 }
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
@@ -45,7 +48,7 @@ pub struct Version {
     pub id: i64,
     pub name: String,
     pub names: Vec<Name>,
-    pub version_group: NamedAPIResource,
+    pub version_group: NamedAPIResource<VersionGroup>,
 }
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
@@ -54,11 +57,11 @@ pub struct VersionGroup {
     pub id: i64,
     pub name: String,
     pub order: u64,
-    pub generation: NamedAPIResource,
-    pub move_learn_methods: Vec<NamedAPIResource>,
-    pub pokedexes: Vec<NamedAPIResource>,
-    pub regions: Vec<NamedAPIResource>,
-    pub versions: Vec<NamedAPIResource>,
+    pub generation: NamedAPIResource<Generation>,
+    pub move_learn_methods: Vec<NamedAPIResource<MoveLearnMethod>>,
+    pub pokedexes: Vec<NamedAPIResource<Pokedex>>,
+    pub regions: Vec<NamedAPIResource<Region>>,
+    pub versions: Vec<NamedAPIResource<Version>>,
 }
 
 set_endpoint!(Generation, NamedAPIResourceList, "generation");

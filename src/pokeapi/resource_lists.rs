@@ -4,20 +4,20 @@ use super::utility::*;
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
-pub struct APIResourceList {
+pub struct APIResourceList<T> {
     pub count: u64,
     pub next: Option<String>,
     pub previous: Option<String>,
-    pub results: Vec<APIResource>,
+    pub results: Vec<APIResource<T>>,
 }
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
-pub struct NamedAPIResourceList {
+pub struct NamedAPIResourceList<T> {
     pub count: u64,
     pub next: Option<String>,
     pub previous: Option<String>,
-    pub results: Vec<NamedAPIResource>,
+    pub results: Vec<NamedAPIResource<T>>,
 }
 
 fn get_query_from_url(url: &str) -> &str {
@@ -30,7 +30,13 @@ mod tests {
 
     #[test]
     fn test_get_query_from_url() {
-        assert_eq!(get_query_from_url("https://pokeapi.co/api/v2/ability/?offset=20&limit=20"), "?offset=20&limit=20");
-        assert_eq!(get_query_from_url("http://localhost:8000/api/v2/pokemon/?limit=0&offset=42"), "?limit=0&offset=42");
+        assert_eq!(
+            get_query_from_url("https://pokeapi.co/api/v2/ability/?offset=20&limit=20"),
+            "?offset=20&limit=20"
+        );
+        assert_eq!(
+            get_query_from_url("http://localhost:8000/api/v2/pokemon/?limit=0&offset=42"),
+            "?limit=0&offset=42"
+        );
     }
 }

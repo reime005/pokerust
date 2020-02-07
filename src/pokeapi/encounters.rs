@@ -20,7 +20,7 @@ pub struct EncounterCondition {
     pub id: i64,
     pub name: String,
     pub names: Vec<Name>,
-    pub values: Vec<NamedAPIResource>,
+    pub values: Vec<NamedAPIResource<EncounterConditionValue>>,
 }
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
@@ -28,7 +28,7 @@ pub struct EncounterCondition {
 pub struct EncounterConditionValue {
     pub id: i64,
     pub name: String,
-    pub condition: NamedAPIResource, // incorrectly documented as list NamedAPIResource
+    pub condition: NamedAPIResource<EncounterCondition>, // incorrectly documented as list NamedAPIResource
     pub names: Vec<Name>,
 }
 

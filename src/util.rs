@@ -1,8 +1,8 @@
 #[macro_export]
 macro_rules! set_endpoint {
-    { $A:ty, $B:ty, $C:literal } => {
+    { $A:ty, $B:tt, $C:literal } => {
 impl crate::Endpoint for $A {
-    type ResourceListKind = $B;
+    type ResourceListKind = $B<$A>;
 
     const ENDPOINT: &'static str = $C;
 

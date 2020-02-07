@@ -1,5 +1,11 @@
 use serde::{Deserialize, Serialize};
 
+use super::berries::*;
+use super::evolution::*;
+use super::games::*;
+use super::items::*;
+use super::locations::*;
+use super::moves::*;
 use super::resource_lists::*;
 use super::utility::*;
 
@@ -11,7 +17,7 @@ pub struct Ability {
     pub id: i64,
     pub name: String,
     pub is_main_series: bool,
-    pub generation: NamedAPIResource,
+    pub generation: NamedAPIResource<Generation>,
     pub names: Vec<Name>,
     pub effect_entries: Vec<VerboseEffect>,
     pub effect_changes: Vec<AbilityEffectChange>,
@@ -23,15 +29,15 @@ pub struct Ability {
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 pub struct AbilityEffectChange {
     pub effect_entries: Vec<Effect>,
-    pub version_group: NamedAPIResource,
+    pub version_group: NamedAPIResource<VersionGroup>,
 }
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 pub struct AbilityFlavorText {
     pub flavor_text: String,
-    pub language: NamedAPIResource,
-    pub version_group: NamedAPIResource,
+    pub language: NamedAPIResource<Language>,
+    pub version_group: NamedAPIResource<VersionGroup>,
 }
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
@@ -39,7 +45,7 @@ pub struct AbilityFlavorText {
 pub struct AbilityPokemon {
     pub is_hidden: bool,
     pub slot: u64,
-    pub pokemon: NamedAPIResource,
+    pub pokemon: NamedAPIResource<Pokemon>,
 }
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
@@ -48,8 +54,8 @@ pub struct Characteristic {
     pub id: i64,
     pub gene_modulo: i64,
     pub possible_values: Vec<u64>,
-    pub highest_stat: NamedAPIResource, // not documented
-    pub descriptions: Vec<Description>, // not documented
+    pub highest_stat: NamedAPIResource<Stat>, // not documented
+    pub descriptions: Vec<Description>,       // not documented
 }
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
@@ -58,7 +64,7 @@ pub struct EggGroup {
     pub id: i64,
     pub name: String,
     pub names: Vec<Name>,
-    pub pokemon_species: Vec<NamedAPIResource>,
+    pub pokemon_species: Vec<NamedAPIResource<PokemonSpecies>>,
 }
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
@@ -67,14 +73,14 @@ pub struct Gender {
     pub id: i64,
     pub name: String,
     pub pokemon_species_details: Vec<PokemonSpeciesGender>,
-    pub required_for_evolution: Vec<NamedAPIResource>,
+    pub required_for_evolution: Vec<NamedAPIResource<PokemonSpecies>>,
 }
 
 // #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 pub struct PokemonSpeciesGender {
     pub rate: i64,
-    pub pokemon_species: NamedAPIResource,
+    pub pokemon_species: NamedAPIResource<PokemonSpecies>,
 }
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
@@ -85,7 +91,7 @@ pub struct GrowthRate {
     pub formula: String,
     pub descriptions: Vec<Description>,
     pub levels: Vec<GrowthRateExperienceLevel>,
-    pub pokemon_species: Vec<NamedAPIResource>,
+    pub pokemon_species: Vec<NamedAPIResource<PokemonSpecies>>,
 }
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
@@ -100,10 +106,10 @@ pub struct GrowthRateExperienceLevel {
 pub struct Nature {
     pub id: i64,
     pub name: String,
-    pub decreased_stat: Option<NamedAPIResource>,
-    pub increased_stat: Option<NamedAPIResource>,
-    pub hates_flavor: Option<NamedAPIResource>,
-    pub likes_flavor: Option<NamedAPIResource>,
+    pub decreased_stat: Option<NamedAPIResource<Stat>>,
+    pub increased_stat: Option<NamedAPIResource<Stat>>,
+    pub hates_flavor: Option<NamedAPIResource<BerryFlavor>>,
+    pub likes_flavor: Option<NamedAPIResource<BerryFlavor>>,
     pub pokeathlon_stat_changes: Vec<NatureStatChange>,
     pub move_battle_style_preferences: Vec<MoveBattleStylePreference>,
     pub names: Vec<Name>,
@@ -113,7 +119,7 @@ pub struct Nature {
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 pub struct NatureStatChange {
     pub max_change: i64,
-    pub pokeathlon_stat: NamedAPIResource,
+    pub pokeathlon_stat: NamedAPIResource<PokeathlonStat>,
 }
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
@@ -121,7 +127,7 @@ pub struct NatureStatChange {
 pub struct MoveBattleStylePreference {
     pub low_hp_preference: u64,
     pub high_hp_preference: u64,
-    pub move_battle_style: NamedAPIResource,
+    pub move_battle_style: NamedAPIResource<MoveBattleStyle>,
 }
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
@@ -144,7 +150,7 @@ pub struct NaturePokeathlonStatAffectSets {
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 pub struct NaturePokeathlonStatAffect {
     pub max_change: i64,
-    pub nature: NamedAPIResource,
+    pub nature: NamedAPIResource<Nature>,
 }
 
 // #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
@@ -158,13 +164,13 @@ pub struct Pokemon {
     pub order: u64,
     pub weight: u64,
     pub abilities: Vec<PokemonAbility>,
-    pub forms: Vec<NamedAPIResource>,
+    pub forms: Vec<NamedAPIResource<PokemonForm>>,
     pub game_indices: Vec<VersionGameIndex>,
     pub held_items: Vec<PokemonHeldItem>,
     pub location_area_encounters: String, // TODO: implement a way to retrieve these
     pub moves: Vec<PokemonMove>,
     pub sprites: PokemonSprites,
-    pub species: NamedAPIResource,
+    pub species: NamedAPIResource<PokemonSpecies>,
     pub stats: Vec<PokemonStat>,
     pub types: Vec<PokemonType>,
 }
@@ -174,7 +180,7 @@ pub struct Pokemon {
 pub struct PokemonAbility {
     pub is_hidden: bool,
     pub slot: u64,
-    pub ability: NamedAPIResource,
+    pub ability: NamedAPIResource<Ability>,
 }
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
@@ -182,20 +188,20 @@ pub struct PokemonAbility {
 pub struct PokemonType {
     pub slot: u64,
     #[serde(rename = "type")]
-    pub type_: NamedAPIResource,
+    pub type_: NamedAPIResource<Type>,
 }
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 pub struct PokemonHeldItem {
-    pub item: NamedAPIResource,
+    pub item: NamedAPIResource<Item>,
     pub version_details: Vec<PokemonHeldItemVersion>,
 }
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 pub struct PokemonHeldItemVersion {
-    pub version: NamedAPIResource,
+    pub version: NamedAPIResource<Version>,
     pub rarity: u64,
 }
 
@@ -203,22 +209,22 @@ pub struct PokemonHeldItemVersion {
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 pub struct PokemonMove {
     #[serde(rename = "move")]
-    pub move_: NamedAPIResource,
+    pub move_: NamedAPIResource<Move>,
     pub version_group_details: Vec<PokemonMoveVersion>,
 }
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 pub struct PokemonMoveVersion {
-    pub move_learn_method: NamedAPIResource,
-    pub version_group: NamedAPIResource,
+    pub move_learn_method: NamedAPIResource<MoveLearnMethod>,
+    pub version_group: NamedAPIResource<VersionGroup>,
     pub level_learned_at: u64,
 }
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 pub struct PokemonStat {
-    pub stat: NamedAPIResource,
+    pub stat: NamedAPIResource<Stat>,
     pub effort: u64,
     pub base_stat: u64,
 }
@@ -239,7 +245,7 @@ pub struct PokemonSprites {
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 pub struct LocationAreaEncounter {
-    pub location_area: NamedAPIResource,
+    pub location_area: NamedAPIResource<LocationArea>,
     pub version_details: Vec<VersionEncounterDetail>,
 }
 
@@ -249,7 +255,7 @@ pub struct PokemonColor {
     pub id: i64,
     pub name: String,
     pub names: Vec<Name>,
-    pub pokemon_species: Vec<NamedAPIResource>,
+    pub pokemon_species: Vec<NamedAPIResource<PokemonSpecies>>,
 }
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
@@ -263,9 +269,9 @@ pub struct PokemonForm {
     pub is_battle_only: bool,
     pub is_mega: bool,
     pub form_name: String,
-    pub pokemon: NamedAPIResource,
+    pub pokemon: NamedAPIResource<Pokemon>,
     pub sprites: PokemonFormSprites,
-    pub version_group: NamedAPIResource,
+    pub version_group: NamedAPIResource<VersionGroup>,
     pub names: Vec<Name>,
     pub form_names: Vec<Name>,
 }
@@ -285,7 +291,7 @@ pub struct PokemonHabitat {
     pub id: i64,
     pub name: String,
     pub names: Vec<Name>,
-    pub pokemon_species: Vec<NamedAPIResource>,
+    pub pokemon_species: Vec<NamedAPIResource<PokemonSpecies>>,
 }
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
@@ -295,14 +301,14 @@ pub struct PokemonShape {
     pub name: String,
     pub awesome_names: Vec<AwesomeName>,
     pub names: Vec<Name>,
-    pub pokemon_species: Vec<NamedAPIResource>, // incorrectly documented as list PokemonSpecies
+    pub pokemon_species: Vec<NamedAPIResource<PokemonSpecies>>, // incorrectly documented as list PokemonSpecies
 }
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 pub struct AwesomeName {
     pub awesome_name: String,
-    pub language: NamedAPIResource,
+    pub language: NamedAPIResource<Language>,
 }
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
@@ -318,15 +324,15 @@ pub struct PokemonSpecies {
     pub hatch_counter: u64,
     pub has_gender_differences: bool,
     pub forms_switchable: bool,
-    pub growth_rate: NamedAPIResource,
+    pub growth_rate: NamedAPIResource<GrowthRate>,
     pub pokedex_numbers: Vec<PokemonSpeciesDexEntry>,
-    pub egg_groups: Vec<NamedAPIResource>,
-    pub color: NamedAPIResource,
-    pub shape: NamedAPIResource,
-    pub evolves_from_species: Option<NamedAPIResource>,
-    pub evolution_chain: APIResource,
-    pub habitat: NamedAPIResource,
-    pub generation: NamedAPIResource,
+    pub egg_groups: Vec<NamedAPIResource<EggGroup>>,
+    pub color: NamedAPIResource<PokemonColor>,
+    pub shape: NamedAPIResource<PokemonShape>,
+    pub evolves_from_species: Option<NamedAPIResource<PokemonSpecies>>,
+    pub evolution_chain: APIResource<EvolutionChain>,
+    pub habitat: NamedAPIResource<PokemonHabitat>,
+    pub generation: NamedAPIResource<Generation>,
     pub names: Vec<Name>,
     pub pal_park_encounters: Vec<PalParkEncounterArea>,
     pub flavor_text_entries: Vec<FlavorText>,
@@ -339,14 +345,14 @@ pub struct PokemonSpecies {
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 pub struct Genus {
     pub genus: String,
-    pub language: NamedAPIResource,
+    pub language: NamedAPIResource<Language>,
 }
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 pub struct PokemonSpeciesDexEntry {
     pub entry_number: u64,
-    pub pokedex: NamedAPIResource,
+    pub pokedex: NamedAPIResource<Pokedex>,
 }
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
@@ -354,14 +360,14 @@ pub struct PokemonSpeciesDexEntry {
 pub struct PalParkEncounterArea {
     pub base_score: u64,
     pub rate: u64,
-    pub area: NamedAPIResource,
+    pub area: NamedAPIResource<PalParkArea>,
 }
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 pub struct PokemonSpeciesVariety {
     pub is_default: bool,
-    pub pokemon: NamedAPIResource,
+    pub pokemon: NamedAPIResource<Pokemon>,
 }
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
@@ -373,8 +379,8 @@ pub struct Stat {
     pub is_battle_only: bool,
     pub affecting_moves: MoveStatAffectSets,
     pub affecting_natures: NatureStatAffectSets,
-    pub characteristics: Vec<APIResource>, // incorrectly documented as APIResource
-    pub move_damage_class: Option<NamedAPIResource>,
+    pub characteristics: Vec<APIResource<Characteristic>>, // incorrectly documented as APIResource
+    pub move_damage_class: Option<NamedAPIResource<MoveDamageClass>>,
     pub names: Vec<Name>,
 }
 
@@ -390,14 +396,14 @@ pub struct MoveStatAffectSets {
 pub struct MoveStatAffect {
     pub change: i64,
     #[serde(rename = "move")]
-    pub move_: NamedAPIResource,
+    pub move_: NamedAPIResource<Move>,
 }
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 pub struct NatureStatAffectSets {
-    pub increase: Vec<NamedAPIResource>,
-    pub decrease: Vec<NamedAPIResource>,
+    pub increase: Vec<NamedAPIResource<MoveStatAffect>>,
+    pub decrease: Vec<NamedAPIResource<MoveStatAffect>>,
 }
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
@@ -407,29 +413,29 @@ pub struct Type {
     pub name: String,
     pub damage_relations: TypeRelations,
     pub game_indices: Vec<GenerationGameIndex>,
-    pub generation: NamedAPIResource,
-    pub move_damage_class: NamedAPIResource,
+    pub generation: NamedAPIResource<Generation>,
+    pub move_damage_class: NamedAPIResource<MoveDamageClass>,
     pub names: Vec<Name>,
     pub pokemon: Vec<TypePokemon>,
-    pub moves: Vec<NamedAPIResource>,
+    pub moves: Vec<NamedAPIResource<Move>>,
 }
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 pub struct TypePokemon {
     pub slot: u64,
-    pub pokemon: NamedAPIResource,
+    pub pokemon: NamedAPIResource<Pokemon>,
 }
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 pub struct TypeRelations {
-    pub no_damage_to: Vec<NamedAPIResource>,
-    pub half_damage_to: Vec<NamedAPIResource>,
-    pub double_damage_to: Vec<NamedAPIResource>,
-    pub no_damage_from: Vec<NamedAPIResource>,
-    pub half_damage_from: Vec<NamedAPIResource>,
-    pub double_damage_from: Vec<NamedAPIResource>,
+    pub no_damage_to: Vec<NamedAPIResource<Type>>,
+    pub half_damage_to: Vec<NamedAPIResource<Type>>,
+    pub double_damage_to: Vec<NamedAPIResource<Type>>,
+    pub no_damage_from: Vec<NamedAPIResource<Type>>,
+    pub half_damage_from: Vec<NamedAPIResource<Type>>,
+    pub double_damage_from: Vec<NamedAPIResource<Type>>,
 }
 
 set_endpoint!(Ability, NamedAPIResourceList, "ability");

@@ -1,6 +1,9 @@
 use serde::{Deserialize, Serialize};
 
+use super::contests::*;
+use super::games::*;
 use super::pokemon::AbilityEffectChange;
+use super::pokemon::*;
 use super::resource_lists::*;
 use super::utility::*;
 
@@ -17,22 +20,22 @@ pub struct Move {
     pub priority: i64,
     pub power: Option<u64>,
     pub contest_combos: Option<ContestComboSets>,
-    pub contest_type: NamedAPIResource,
-    pub contest_effect: APIResource,
-    pub damage_class: NamedAPIResource,
+    pub contest_type: NamedAPIResource<ContestType>,
+    pub contest_effect: APIResource<ContestEffect>,
+    pub damage_class: NamedAPIResource<MoveDamageClass>,
     pub effect_entries: Vec<VerboseEffect>,
     pub effect_changes: Vec<AbilityEffectChange>,
     pub flavor_text_entries: Vec<MoveFlavorText>,
-    pub generation: NamedAPIResource,
+    pub generation: NamedAPIResource<Generation>,
     pub machines: Vec<MachineVersionDetail>,
     pub meta: MoveMetaData,
     pub names: Vec<Name>,
     pub past_values: Vec<PastMoveStatValues>,
     pub stat_changes: Vec<MoveStatChange>,
-    pub super_contest_effect: APIResource,
-    pub target: NamedAPIResource,
+    pub super_contest_effect: APIResource<SuperContestEffect>,
+    pub target: NamedAPIResource<MoveTarget>,
     #[serde(rename = "type")]
-    pub type_: NamedAPIResource,
+    pub type_: NamedAPIResource<Type>,
 }
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
@@ -46,23 +49,23 @@ pub struct ContestComboSets {
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 pub struct ContestComboDetail {
-    pub use_before: Vec<NamedAPIResource>,
-    pub use_after: Vec<NamedAPIResource>,
+    pub use_before: Vec<NamedAPIResource<Move>>,
+    pub use_after: Vec<NamedAPIResource<Move>>,
 }
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 pub struct MoveFlavorText {
     pub flavor_text: String,
-    pub language: NamedAPIResource, // incorrectly documented as list NamedAPIResource (Move)
-    pub version_group: NamedAPIResource, // incorrectly documented as list NamedAPIResource (Move)
+    pub language: NamedAPIResource<Language>, // incorrectly documented as list NamedAPIResource (Move)
+    pub version_group: NamedAPIResource<VersionGroup>, // incorrectly documented as list NamedAPIResource (Move)
 }
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 pub struct MoveMetaData {
-    pub ailment: NamedAPIResource,
-    pub category: NamedAPIResource,
+    pub ailment: NamedAPIResource<MoveAilment>,
+    pub category: NamedAPIResource<MoveCategory>, // incorrectly documented as NamedApiResource (Move)
     pub min_hits: Option<u64>,
     pub max_hits: Option<u64>,
     pub min_turns: u64,
@@ -79,7 +82,7 @@ pub struct MoveMetaData {
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 pub struct MoveStatChange {
     pub change: i64,
-    pub stat: NamedAPIResource,
+    pub stat: NamedAPIResource<Stat>,
 }
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
@@ -91,8 +94,8 @@ pub struct PastMoveStatValues {
     pub pp: Option<u64>,
     pub effect_entries: Vec<VerboseEffect>,
     #[serde(rename = "type")]
-    type_: Option<NamedAPIResource>,
-    pub version_group: NamedAPIResource,
+    type_: Option<NamedAPIResource<Type>>,
+    pub version_group: NamedAPIResource<VersionGroup>,
 }
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
@@ -100,7 +103,7 @@ pub struct PastMoveStatValues {
 pub struct MoveAilment {
     pub id: i64,
     pub name: String,
-    pub moves: Vec<NamedAPIResource>,
+    pub moves: Vec<NamedAPIResource<Move>>,
     pub names: Vec<Name>,
 }
 
@@ -118,7 +121,7 @@ pub struct MoveBattleStyle {
 pub struct MoveCategory {
     pub id: i64,
     pub name: String,
-    pub moves: Vec<NamedAPIResource>,
+    pub moves: Vec<NamedAPIResource<Move>>,
     pub descriptions: Vec<Description>,
 }
 
@@ -128,7 +131,7 @@ pub struct MoveDamageClass {
     pub id: i64,
     pub name: String,
     pub descriptions: Vec<Description>,
-    pub moves: Vec<NamedAPIResource>,
+    pub moves: Vec<NamedAPIResource<Move>>,
     pub names: Vec<Name>,
 }
 
@@ -139,7 +142,7 @@ pub struct MoveLearnMethod {
     pub name: String,
     pub descriptions: Vec<Description>,
     pub names: Vec<Name>,
-    pub version_groups: Vec<NamedAPIResource>,
+    pub version_groups: Vec<NamedAPIResource<VersionGroup>>,
 }
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
@@ -148,7 +151,7 @@ pub struct MoveTarget {
     pub id: i64,
     pub name: String,
     pub descriptions: Vec<Description>,
-    pub moves: Vec<NamedAPIResource>,
+    pub moves: Vec<NamedAPIResource<Move>>,
     pub names: Vec<Name>,
 }
 

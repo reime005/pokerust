@@ -1,5 +1,8 @@
 use serde::{Deserialize, Serialize};
 
+use super::games::*;
+use super::items::*;
+use super::moves::*;
 use super::resource_lists::*;
 use super::utility::*;
 
@@ -9,10 +12,10 @@ use crate::{impl_id, set_endpoint};
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 pub struct Machine {
     pub id: i64,
-    pub item: NamedAPIResource,
+    pub item: NamedAPIResource<Item>,
     #[serde(rename = "move")]
-    pub move_: NamedAPIResource,
-    pub version_group: NamedAPIResource,
+    pub move_: NamedAPIResource<Move>,
+    pub version_group: NamedAPIResource<VersionGroup>,
 }
 
 set_endpoint!(Machine, APIResourceList, "machine");

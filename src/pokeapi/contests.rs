@@ -1,5 +1,7 @@
 use serde::{Deserialize, Serialize};
 
+use super::berries::*;
+use super::moves::*;
 use super::resource_lists::*;
 use super::utility::*;
 
@@ -10,7 +12,7 @@ use crate::{impl_id, impl_id_and_named, set_endpoint};
 pub struct ContestType {
     pub id: i64,
     pub name: String,
-    pub berry_flavor: NamedAPIResource,
+    pub berry_flavor: NamedAPIResource<BerryFlavor>,
     pub names: Vec<ContestName>,
 }
 
@@ -19,7 +21,7 @@ pub struct ContestType {
 pub struct ContestName {
     pub name: String,
     pub color: String,
-    pub language: NamedAPIResource,
+    pub language: NamedAPIResource<Language>,
 }
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
@@ -38,7 +40,7 @@ pub struct SuperContestEffect {
     pub id: i64,
     pub appeal: u64,
     pub flavor_text_entries: Vec<FlavorText>,
-    pub moves: Vec<NamedAPIResource>,
+    pub moves: Vec<NamedAPIResource<Move>>,
 }
 
 set_endpoint!(ContestEffect, APIResourceList, "contest-effect");

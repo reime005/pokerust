@@ -1,5 +1,7 @@
 use serde::{Deserialize, Serialize};
 
+use super::evolution::*;
+use super::games::*;
 use super::resource_lists::*;
 use super::utility::*;
 
@@ -12,16 +14,16 @@ pub struct Item {
     pub name: String,
     pub cost: u64,
     pub fling_power: Option<u64>,
-    pub fling_effect: Option<NamedAPIResource>,
-    pub attributes: Vec<NamedAPIResource>,
-    pub category: NamedAPIResource, // incorrectly documented as ItemCategory
+    pub fling_effect: Option<NamedAPIResource<ItemFlingEffect>>,
+    pub attributes: Vec<NamedAPIResource<ItemAttribute>>,
+    pub category: NamedAPIResource<ItemCategory>, // incorrectly documented as ItemCategory
     pub effect_entries: Vec<VerboseEffect>,
     pub flavor_text_entries: Vec<VersionGroupFlavorText>,
     pub game_indices: Vec<GenerationGameIndex>,
     pub names: Vec<Name>,
     pub sprites: ItemSprites,
     pub held_by_pokemon: Vec<ItemHolderPokemon>,
-    pub baby_trigger_for: Option<APIResource>,
+    pub baby_trigger_for: Option<APIResource<EvolutionChain>>,
     pub machines: Vec<MachineVersionDetail>,
 }
 
@@ -42,7 +44,7 @@ pub struct ItemHolderPokemon {
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 pub struct ItemHolderPokemonVersionDetail {
     pub rarity: String,
-    pub version: NamedAPIResource,
+    pub version: NamedAPIResource<Version>,
 }
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
@@ -50,7 +52,7 @@ pub struct ItemHolderPokemonVersionDetail {
 pub struct ItemAttribute {
     pub id: i64,
     pub name: String,
-    pub items: Vec<NamedAPIResource>,
+    pub items: Vec<NamedAPIResource<Item>>,
     pub names: Vec<Name>,
     pub descriptions: Vec<Description>,
 }
@@ -60,9 +62,9 @@ pub struct ItemAttribute {
 pub struct ItemCategory {
     pub id: i64,
     pub name: String,
-    pub items: Vec<NamedAPIResource>,
+    pub items: Vec<NamedAPIResource<Item>>,
     pub names: Vec<Name>,
-    pub pocket: NamedAPIResource,
+    pub pocket: NamedAPIResource<ItemPocket>,
 }
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
@@ -71,7 +73,7 @@ pub struct ItemFlingEffect {
     pub id: i64,
     pub name: String,
     pub effect_entries: Vec<Effect>,
-    pub items: Vec<NamedAPIResource>, // incorrectly documented as NamedAPIResource
+    pub items: Vec<NamedAPIResource<Item>>, // incorrectly documented as NamedAPIResource
 }
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
@@ -79,7 +81,7 @@ pub struct ItemFlingEffect {
 pub struct ItemPocket {
     pub id: i64,
     pub name: String,
-    pub categories: Vec<NamedAPIResource>,
+    pub categories: Vec<NamedAPIResource<ItemCategory>>,
     pub names: Vec<Name>,
 }
 

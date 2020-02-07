@@ -393,3 +393,42 @@ fn get_full_version_list() {
 fn get_full_version_group_list() {
     test_full_list::<VersionGroup>(18, FULL_VERSION_GROUP_LIST_JSON);
 }
+
+// https://pokeapi.co/api/v2/item/?offset=100&limit=10
+static ITEM_LIST_JSON_OFFSET_100_LIMIT_10: &str = r#"{"count":954,"next":"https://pokeapi.co/api/v2/item/?offset=110&limit=10","previous":"https://pokeapi.co/api/v2/item/?offset=90&limit=10","results":[{"name":"helix-fossil","url":"https://pokeapi.co/api/v2/item/101/"},{"name":"dome-fossil","url":"https://pokeapi.co/api/v2/item/102/"},{"name":"old-amber","url":"https://pokeapi.co/api/v2/item/103/"},{"name":"armor-fossil","url":"https://pokeapi.co/api/v2/item/104/"},{"name":"skull-fossil","url":"https://pokeapi.co/api/v2/item/105/"},{"name":"rare-bone","url":"https://pokeapi.co/api/v2/item/106/"},{"name":"shiny-stone","url":"https://pokeapi.co/api/v2/item/107/"},{"name":"dusk-stone","url":"https://pokeapi.co/api/v2/item/108/"},{"name":"dawn-stone","url":"https://pokeapi.co/api/v2/item/109/"},{"name":"oval-stone","url":"https://pokeapi.co/api/v2/item/110/"}]}"#;
+
+#[test]
+fn get_next_list() {
+    // https://pokeapi.co/api/v2/item/?offset=110&limit=10
+    static ITEM_LIST_JSON_OFFSET_110_LIMIT_10: &str = r#"{"count":954,"next":"https://pokeapi.co/api/v2/item/?offset=120&limit=10","previous":"https://pokeapi.co/api/v2/item/?offset=100&limit=10","results":[{"name":"odd-keystone","url":"https://pokeapi.co/api/v2/item/111/"},{"name":"adamant-orb","url":"https://pokeapi.co/api/v2/item/112/"},{"name":"lustrous-orb","url":"https://pokeapi.co/api/v2/item/113/"},{"name":"grass-mail","url":"https://pokeapi.co/api/v2/item/114/"},{"name":"flame-mail","url":"https://pokeapi.co/api/v2/item/115/"},{"name":"bubble-mail","url":"https://pokeapi.co/api/v2/item/116/"},{"name":"bloom-mail","url":"https://pokeapi.co/api/v2/item/117/"},{"name":"tunnel-mail","url":"https://pokeapi.co/api/v2/item/118/"},{"name":"steel-mail","url":"https://pokeapi.co/api/v2/item/119/"},{"name":"heart-mail","url":"https://pokeapi.co/api/v2/item/120/"}]}"#;
+
+    let _m = common::make_mock(
+        "/api/v2/item/?offset=100&limit=10",
+        ITEM_LIST_JSON_OFFSET_100_LIMIT_10,
+    );
+    let item_list = Item::list(100, 10).unwrap();
+
+    let _m_next = common::make_mock(
+        "/api/v2/item/?offset=110&limit=10",
+        ITEM_LIST_JSON_OFFSET_110_LIMIT_10,
+    );
+    let _ = item_list.next_list().unwrap().unwrap();
+}
+
+#[test]
+fn get_previous_list() {
+    // https://pokeapi.co/api/v2/item/?offset=90&limit=10
+    static ITEM_LIST_JSON_OFFSET_90_LIMIT_10: &str = r#"{"count":954,"next":"https://pokeapi.co/api/v2/item/?offset=100&limit=10","previous":"https://pokeapi.co/api/v2/item/?offset=80&limit=10","results":[{"name":"star-piece","url":"https://pokeapi.co/api/v2/item/91/"},{"name":"nugget","url":"https://pokeapi.co/api/v2/item/92/"},{"name":"heart-scale","url":"https://pokeapi.co/api/v2/item/93/"},{"name":"honey","url":"https://pokeapi.co/api/v2/item/94/"},{"name":"growth-mulch","url":"https://pokeapi.co/api/v2/item/95/"},{"name":"damp-mulch","url":"https://pokeapi.co/api/v2/item/96/"},{"name":"stable-mulch","url":"https://pokeapi.co/api/v2/item/97/"},{"name":"gooey-mulch","url":"https://pokeapi.co/api/v2/item/98/"},{"name":"root-fossil","url":"https://pokeapi.co/api/v2/item/99/"},{"name":"claw-fossil","url":"https://pokeapi.co/api/v2/item/100/"}]}"#;
+
+    let _m = common::make_mock(
+        "/api/v2/item/?offset=100&limit=10",
+        ITEM_LIST_JSON_OFFSET_100_LIMIT_10,
+    );
+    let item_list = Item::list(100, 10).unwrap();
+
+    let _m_previous = common::make_mock(
+        "/api/v2/item/?offset=90&limit=10",
+        ITEM_LIST_JSON_OFFSET_90_LIMIT_10,
+    );
+    let _ = item_list.previous_list().unwrap().unwrap();
+}

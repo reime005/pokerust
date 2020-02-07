@@ -1,3 +1,4 @@
+use serde::de::DeserializeOwned;
 use serde::{Deserialize, Serialize};
 
 use super::utility::*;
@@ -20,8 +21,49 @@ pub struct NamedAPIResourceList<T> {
     pub results: Vec<NamedAPIResource<T>>,
 }
 
-fn get_query_from_url(url: &str) -> &str {
-    &url[(url.rfind('/').unwrap() + 1)..]
+pub trait List
+where
+    Self: Sized,
+{
+    fn count(&self) -> &u64;
+
+    fn next_list(&self) -> Result<Option<Self>, minreq::Error>;
+
+    fn previous_list(&self) -> Result<Option<Self>, minreq::Error>;
+}
+
+/// Gets the location of an API resource from a full url, minus the url
+/// and common prefix, e.g. "https://pokeapi.co/api/v2/"
+fn get_api_loc_from_url(url: &str) -> &str {
+    let pre = "api/v2/";
+    &url[(url.rfind(pre).unwrap() + pre.len())..]
+}
+
+impl<T> List for NamedAPIResourceList<T>
+where
+    T: DeserializeOwned,
+{
+    fn count(&self) -> &u64 {
+        &self.count
+    }
+
+    fn next_list(&self) -> Result<Option<Self>, minreq::Error> {
+        if let Some(loc) = &self.next {
+            let list = crate::cache::get_resource(get_api_loc_from_url(&loc))?.json::<Self>()?;
+            Ok(Some(list))
+        } else {
+            Ok(None)
+        }
+    }
+
+    fn previous_list(&self) -> Result<Option<Self>, minreq::Error> {
+        if let Some(loc) = &self.next {
+            let list = crate::cache::get_resource(get_api_loc_from_url(&loc))?.json::<Self>()?;
+            Ok(Some(list))
+        } else {
+            Ok(None)
+        }
+    }
 }
 
 #[cfg(test)]
@@ -29,14 +71,18 @@ mod tests {
     use super::*;
 
     #[test]
-    fn test_get_query_from_url() {
+    fn test_get_api_loc_from_url() {
         assert_eq!(
-            get_query_from_url("https://pokeapi.co/api/v2/ability/?offset=20&limit=20"),
-            "?offset=20&limit=20"
+            get_api_loc_from_url("https://pokeapi.co/api/v2/ability/?offset=20&limit=20"),
+            "ability/?offset=20&limit=20"
         );
         assert_eq!(
-            get_query_from_url("http://localhost:8000/api/v2/pokemon/?limit=0&offset=42"),
-            "?limit=0&offset=42"
+            get_api_loc_from_url("http://localhost:8000/api/v2/pokemon/?limit=0&offset=42"),
+            "pokemon/?limit=0&offset=42"
+        );
+        assert_eq!(
+            get_api_loc_from_url("https://pokeapi.co/api/v2/api/v2/ability/?offset=20&limit=20"),
+            "ability/?offset=20&limit=20"
         );
     }
 }

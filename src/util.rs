@@ -1,3 +1,6 @@
+/// Gets the location of an API resource from a full url, minus the url
+/// and common prefix, e.g. "https://pokeapi.co/api/v2/"
+
 #[macro_export]
 macro_rules! set_endpoint {
     { $A:ty, $B:tt, $C:literal } => {

@@ -1,6 +1,7 @@
 use serde::de::DeserializeOwned;
 use serde::{Deserialize, Serialize};
 
+use super::get_api_loc_from_url;
 use super::utility::*;
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
@@ -30,13 +31,6 @@ where
     fn next_list(&self) -> Result<Option<Self>, minreq::Error>;
 
     fn previous_list(&self) -> Result<Option<Self>, minreq::Error>;
-}
-
-/// Gets the location of an API resource from a full url, minus the url
-/// and common prefix, e.g. "https://pokeapi.co/api/v2/"
-fn get_api_loc_from_url(url: &str) -> &str {
-    let pre = "api/v2/";
-    &url[(url.rfind(pre).unwrap() + pre.len())..]
 }
 
 impl<T> List for NamedAPIResourceList<T>

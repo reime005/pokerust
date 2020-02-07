@@ -1,11 +1,14 @@
+use serde::de::DeserializeOwned;
 use serde::{Deserialize, Serialize};
 
 use crate::{impl_id_and_named, impl_named, set_endpoint, Named};
 
 use super::encounters::*;
 use super::games::*;
+use super::get_api_loc_from_url;
 use super::machines::*;
 use super::resource_lists::*;
+use crate::cache::get_resource;
 
 use std::marker::PhantomData;
 
@@ -26,6 +29,15 @@ pub struct APIResource<T> {
     pub url: String,
     #[serde(skip)]
     resource_type: PhantomData<*const T>,
+}
+
+impl<T> APIResource<T>
+where
+    T: DeserializeOwned,
+{
+    pub fn get(&self) -> Result<T, minreq::Error> {
+        get_resource(get_api_loc_from_url(&self.url))?.json::<T>()
+    }
 }
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
@@ -93,6 +105,15 @@ pub struct NamedAPIResource<T> {
 impl<T> Named for NamedAPIResource<T> {
     fn name(&self) -> &String {
         &self.name
+    }
+}
+
+impl<T> NamedAPIResource<T>
+where
+    T: DeserializeOwned,
+{
+    pub fn get(&self) -> Result<T, minreq::Error> {
+        get_resource(get_api_loc_from_url(&self.url))?.json::<T>()
     }
 }
 

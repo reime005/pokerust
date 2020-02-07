@@ -1,9 +1,8 @@
-use pokerust::{Berry, Endpoint, List};
+use pokerust::{Berry, FromId};
 
 fn main() {
-    let berry_list = Berry::list(4, 5).unwrap();
+    let berry = Berry::from_id(1).unwrap();
+    let foo = berry.firmness.get().unwrap();
 
-    println!("{:?}", berry_list);
-
-    println!("{:?}", berry_list.previous_list());
+    println!("{:?}", foo);
 }

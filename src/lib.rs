@@ -36,7 +36,7 @@ pub trait Named {
 }
 
 pub trait Id {
-    fn id(&self) -> &i64;
+    fn id(&self) -> i64;
 }
 
 pub trait FromId: Id + Endpoint

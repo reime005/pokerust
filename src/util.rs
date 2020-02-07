@@ -24,8 +24,8 @@ impl crate::Endpoint for $A {
 macro_rules! impl_id {
     { $A:ty } => {
 impl crate::Id for $A {
-    fn id(&self) -> &i64 {
-        &self.id
+    fn id(&self) -> i64 {
+        self.id
     }
 }
 };

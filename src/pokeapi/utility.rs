@@ -1,7 +1,7 @@
 use serde::de::DeserializeOwned;
 use serde::{Deserialize, Serialize};
 
-use crate::{impl_id_and_named, impl_named, set_endpoint, Named};
+use crate::{impl_id_and_named, impl_named, set_endpoint, Named, Id};
 
 use super::encounters::*;
 use super::games::*;
@@ -11,6 +11,12 @@ use super::resource_lists::*;
 use crate::cache::get_resource;
 
 use std::marker::PhantomData;
+
+// Extract the id from a url containing one, e.g. https://pokeapi.co/api/v2/item/38/
+fn id_from_url(url: &str) -> i64 {
+    let url = &url[..(url.len() - 1)];
+    url[(url.rfind('/').unwrap() + 1)..].parse().unwrap()
+}
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
@@ -29,6 +35,12 @@ pub struct APIResource<T> {
     pub url: String,
     #[serde(skip)]
     resource_type: PhantomData<*const T>,
+}
+
+impl<T> Id for APIResource<T> {
+    fn id(&self) -> i64 {
+        id_from_url(&self.url)
+    }
 }
 
 impl<T> APIResource<T>
@@ -102,6 +114,12 @@ pub struct NamedAPIResource<T> {
     resource_type: PhantomData<*const T>,
 }
 
+impl<T> Id for NamedAPIResource<T> {
+    fn id(&self) -> i64 {
+        id_from_url(&self.url)
+    }
+}
+
 impl<T> Named for NamedAPIResource<T> {
     fn name(&self) -> &String {
         &self.name
@@ -152,3 +170,15 @@ set_endpoint!(Language, NamedAPIResourceList, "language");
 
 impl_named!(Name);
 impl_id_and_named!(Language);
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_id_from_url() {
+        assert_eq!(id_from_url("https://pokeapi.co/api/v2/move-ailment/-1/"), -1);
+        assert_eq!(id_from_url("https://pokeapi.co/api/v2/move-category/0/"), 0);
+        assert_eq!(id_from_url("http://localhost:8000/api/v2/item/38/"), 38);
+    }
+}

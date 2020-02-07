@@ -19,3 +19,18 @@ pub struct NamedAPIResourceList {
     pub previous: Option<String>,
     pub results: Vec<NamedAPIResource>,
 }
+
+fn get_query_from_url(url: &str) -> &str {
+    &url[(url.rfind('/').unwrap() + 1)..]
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_get_query_from_url() {
+        assert_eq!(get_query_from_url("https://pokeapi.co/api/v2/ability/?offset=20&limit=20"), "?offset=20&limit=20");
+        assert_eq!(get_query_from_url("http://localhost:8000/api/v2/pokemon/?limit=0&offset=42"), "?limit=0&offset=42");
+    }
+}

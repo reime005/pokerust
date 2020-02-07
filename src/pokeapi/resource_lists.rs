@@ -59,24 +59,3 @@ where
         }
     }
 }
-
-#[cfg(test)]
-mod tests {
-    use super::*;
-
-    #[test]
-    fn test_get_api_loc_from_url() {
-        assert_eq!(
-            get_api_loc_from_url("https://pokeapi.co/api/v2/ability/?offset=20&limit=20"),
-            "ability/?offset=20&limit=20"
-        );
-        assert_eq!(
-            get_api_loc_from_url("http://localhost:8000/api/v2/pokemon/?limit=0&offset=42"),
-            "pokemon/?limit=0&offset=42"
-        );
-        assert_eq!(
-            get_api_loc_from_url("https://pokeapi.co/api/v2/api/v2/ability/?offset=20&limit=20"),
-            "ability/?offset=20&limit=20"
-        );
-    }
-}

@@ -27,6 +27,8 @@ pub trait Endpoint {
     const ENDPOINT: &'static str;
 
     fn list(offset: usize, limit: usize) -> Result<Self::ResourceListKind, ::minreq::Error>;
+
+    fn full_list() -> Result<Self::ResourceListKind, ::minreq::Error>;
 }
 
 pub trait Named {

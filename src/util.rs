@@ -9,6 +9,10 @@ impl crate::Endpoint for $A {
     fn list(offset: usize, limit: usize) -> Result<Self::ResourceListKind, ::minreq::Error> {
         crate::cache::get_resource(&format!("{}/?offset={}&limit={}", Self::ENDPOINT, offset, limit))?.json::<Self::ResourceListKind>()
     }
+
+    fn full_list() -> Result<Self::ResourceListKind, ::minreq::Error> {
+        crate::cache::get_resource(&format!("{}/?offset=0&limit=-1", Self::ENDPOINT))?.json::<Self::ResourceListKind>()
+    }
 }
 };
 }

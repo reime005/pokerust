@@ -4,6 +4,7 @@ use super::evolution::*;
 use super::games::*;
 use super::resource_lists::*;
 use super::utility::*;
+use super::pokemon::*;
 
 use crate::{impl_id_and_named, set_endpoint};
 
@@ -36,14 +37,14 @@ pub struct ItemSprites {
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 pub struct ItemHolderPokemon {
-    pub pokemon: String,
+    pub pokemon: NamedAPIResource<Pokemon>, // incorrectly documented as string
     pub version_details: Vec<ItemHolderPokemonVersionDetail>,
 }
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 pub struct ItemHolderPokemonVersionDetail {
-    pub rarity: String,
+    pub rarity: u64, // incorrectly documented as string
     pub version: NamedAPIResource<Version>,
 }
 

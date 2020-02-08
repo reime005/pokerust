@@ -43,7 +43,7 @@ pub struct EvolutionDetail {
     pub needs_overworld_rain: bool,
     pub party_species: Option<NamedAPIResource<PokemonSpecies>>,
     pub party_type: Option<NamedAPIResource<Type>>,
-    pub relative_physical_stats: Option<u64>,
+    pub relative_physical_stats: Option<i64>,
     pub time_of_day: String,
     pub trade_species: Option<NamedAPIResource<PokemonSpecies>>,
     pub turn_upside_down: bool,

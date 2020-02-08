@@ -14,3 +14,4 @@ lazy_static = "1.4.0"
 
 [dev-dependencies]
 mockito = "0.23.0"
+paste = "0.1"

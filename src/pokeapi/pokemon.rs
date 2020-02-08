@@ -232,14 +232,14 @@ pub struct PokemonStat {
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 pub struct PokemonSprites {
-    pub front_default: String,
-    pub front_shiny: String,
-    pub front_female: String,
-    pub front_shiny_female: String,
-    pub back_default: String,
-    pub back_shiny: String,
-    pub back_female: String,
-    pub back_shiny_female: String,
+    pub front_default: Option<String>,
+    pub front_shiny: Option<String>,
+    pub front_female: Option<String>,
+    pub front_shiny_female: Option<String>,
+    pub back_default: Option<String>,
+    pub back_shiny: Option<String>,
+    pub back_female: Option<String>,
+    pub back_shiny_female: Option<String>,
 }
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
@@ -279,7 +279,7 @@ pub struct PokemonForm {
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 pub struct PokemonFormSprites {
-    pub front_default: String,
+    pub front_default: Option<String>,
     pub front_shiny: Option<String>,
     pub back_default: Option<String>,
     pub back_shiny: Option<String>,
@@ -317,7 +317,7 @@ pub struct PokemonSpecies {
     pub id: i64,
     pub name: String,
     pub order: u64,
-    pub gender_rate: u64,
+    pub gender_rate: i64,
     pub capture_rate: u64,
     pub base_happiness: u64,
     pub is_baby: bool,
@@ -331,7 +331,7 @@ pub struct PokemonSpecies {
     pub shape: NamedAPIResource<PokemonShape>,
     pub evolves_from_species: Option<NamedAPIResource<PokemonSpecies>>,
     pub evolution_chain: APIResource<EvolutionChain>,
-    pub habitat: NamedAPIResource<PokemonHabitat>,
+    pub habitat: Option<NamedAPIResource<PokemonHabitat>>,
     pub generation: NamedAPIResource<Generation>,
     pub names: Vec<Name>,
     pub pal_park_encounters: Vec<PalParkEncounterArea>,
@@ -414,7 +414,7 @@ pub struct Type {
     pub damage_relations: TypeRelations,
     pub game_indices: Vec<GenerationGameIndex>,
     pub generation: NamedAPIResource<Generation>,
-    pub move_damage_class: NamedAPIResource<MoveDamageClass>,
+    pub move_damage_class: Option<NamedAPIResource<MoveDamageClass>>,
     pub names: Vec<Name>,
     pub pokemon: Vec<TypePokemon>,
     pub moves: Vec<NamedAPIResource<Move>>,

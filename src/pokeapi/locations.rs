@@ -13,7 +13,7 @@ use crate::{impl_id_and_named, set_endpoint};
 pub struct Location {
     pub id: i64,
     pub name: String,
-    pub region: NamedAPIResource<Region>,
+    pub region: Option<NamedAPIResource<Region>>,
     pub names: Vec<Name>,
     pub game_indices: Vec<GenerationGameIndex>,
     pub areas: Vec<NamedAPIResource<LocationArea>>,

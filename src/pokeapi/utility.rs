@@ -1,7 +1,7 @@
 use serde::de::DeserializeOwned;
 use serde::{Deserialize, Serialize};
 
-use crate::{impl_id_and_named, impl_named, set_endpoint, Named, Id};
+use crate::{impl_id_and_named, impl_named, set_endpoint, Id, Named};
 
 use super::encounters::*;
 use super::games::*;
@@ -177,7 +177,10 @@ mod tests {
 
     #[test]
     fn test_id_from_url() {
-        assert_eq!(id_from_url("https://pokeapi.co/api/v2/move-ailment/-1/"), -1);
+        assert_eq!(
+            id_from_url("https://pokeapi.co/api/v2/move-ailment/-1/"),
+            -1
+        );
         assert_eq!(id_from_url("https://pokeapi.co/api/v2/move-category/0/"), 0);
         assert_eq!(id_from_url("http://localhost:8000/api/v2/item/38/"), 38);
     }

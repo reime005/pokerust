@@ -7,7 +7,7 @@ use std::env;
 lazy_static! {
     pub static ref ENDPOINT: String = match env::var("POKERUST_ENDPOINT") {
         Ok(val) => val,
-        Err(env::VarError::NotPresent) => String::from("http://localhost:8000/api/v2/"),
+        Err(env::VarError::NotPresent) => String::from("https://pokeapi.co/api/v2/"),
         Err(_) => panic!("Error reading endpoint from POKERUST_ENDPOINT"),
     };
 }

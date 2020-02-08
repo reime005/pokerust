@@ -20,6 +20,7 @@ pub use pokeapi::moves::*;
 pub use pokeapi::pokemon::*;
 pub use pokeapi::resource_lists::*;
 pub use pokeapi::utility::*;
+pub use cache::ENDPOINT;
 
 pub trait Endpoint {
     type ResourceListKind;

@@ -9,7 +9,7 @@ use super::utility::*;
 
 use crate::{impl_id_and_named, set_endpoint};
 
-// #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
+#[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 pub struct Move {
     pub id: i16,

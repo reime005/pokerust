@@ -76,7 +76,7 @@ pub struct Gender {
     pub required_for_evolution: Vec<NamedAPIResource<PokemonSpecies>>,
 }
 
-// #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
+#[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 pub struct PokemonSpeciesGender {
     pub rate: i8,
@@ -153,7 +153,7 @@ pub struct NaturePokeathlonStatAffect {
     pub nature: NamedAPIResource<Nature>,
 }
 
-// #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
+#[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 pub struct Pokemon {
     pub id: i16,

@@ -15,3 +15,8 @@ lazy_static = "1.4.0"
 [dev-dependencies]
 mockito = "0.23.0"
 paste = "0.1"
+
+[profile.release]
+lto = true
+codegen-units = 1
+incremental = false

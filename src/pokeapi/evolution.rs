@@ -11,6 +11,7 @@ use crate::{impl_id, impl_id_and_named, set_endpoint};
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
+#[non_exhaustive]
 pub struct EvolutionChain {
     pub id: i16,
     pub baby_trigger_item: Option<NamedAPIResource<Item>>,
@@ -19,6 +20,7 @@ pub struct EvolutionChain {
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
+#[non_exhaustive]
 pub struct ChainLink {
     pub is_baby: bool,
     pub species: NamedAPIResource<PokemonSpecies>,
@@ -28,6 +30,7 @@ pub struct ChainLink {
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
+#[non_exhaustive]
 pub struct EvolutionDetail {
     pub item: Option<NamedAPIResource<Item>>,
     pub trigger: NamedAPIResource<EvolutionTrigger>,
@@ -51,6 +54,7 @@ pub struct EvolutionDetail {
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
+#[non_exhaustive]
 pub struct EvolutionTrigger {
     pub id: i16,
     pub name: String,

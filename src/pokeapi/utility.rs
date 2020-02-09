@@ -20,6 +20,7 @@ fn id_from_url(url: &str) -> i16 {
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
+#[non_exhaustive]
 pub struct Language {
     pub id: i16,
     pub name: String,
@@ -31,6 +32,7 @@ pub struct Language {
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
+#[non_exhaustive]
 pub struct APIResource<T> {
     pub url: String,
     #[serde(skip)]
@@ -54,6 +56,7 @@ where
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
+#[non_exhaustive]
 pub struct Description {
     pub description: String,
     pub language: NamedAPIResource<Language>,
@@ -61,6 +64,7 @@ pub struct Description {
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
+#[non_exhaustive]
 pub struct Effect {
     pub effect: String,
     pub language: NamedAPIResource<Language>,
@@ -68,6 +72,7 @@ pub struct Effect {
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
+#[non_exhaustive]
 pub struct Encounter {
     pub min_level: u8,
     pub max_level: u8,
@@ -78,6 +83,7 @@ pub struct Encounter {
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
+#[non_exhaustive]
 pub struct FlavorText {
     pub flavor_text: String,
     pub language: NamedAPIResource<Language>,
@@ -86,6 +92,7 @@ pub struct FlavorText {
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
+#[non_exhaustive]
 pub struct GenerationGameIndex {
     pub game_index: i16,
     pub generation: NamedAPIResource<Generation>,
@@ -93,6 +100,7 @@ pub struct GenerationGameIndex {
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
+#[non_exhaustive]
 pub struct MachineVersionDetail {
     pub machine: APIResource<Machine>,
     pub version_group: NamedAPIResource<VersionGroup>,
@@ -100,6 +108,7 @@ pub struct MachineVersionDetail {
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
+#[non_exhaustive]
 pub struct Name {
     pub name: String,
     pub language: NamedAPIResource<Language>,
@@ -107,6 +116,7 @@ pub struct Name {
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
+#[non_exhaustive]
 pub struct NamedAPIResource<T> {
     pub name: String,
     pub url: String,
@@ -137,6 +147,7 @@ where
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
+#[non_exhaustive]
 pub struct VerboseEffect {
     pub effect: String,
     pub short_effect: String,
@@ -145,6 +156,7 @@ pub struct VerboseEffect {
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
+#[non_exhaustive]
 pub struct VersionEncounterDetail {
     pub version: NamedAPIResource<Version>,
     pub max_chance: u16,
@@ -153,6 +165,7 @@ pub struct VersionEncounterDetail {
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
+#[non_exhaustive]
 pub struct VersionGameIndex {
     pub game_index: i16,
     pub version: NamedAPIResource<Version>,
@@ -160,6 +173,7 @@ pub struct VersionGameIndex {
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
+#[non_exhaustive]
 pub struct VersionGroupFlavorText {
     pub text: String,
     pub language: NamedAPIResource<Language>,

@@ -10,6 +10,7 @@ use crate::{impl_id_and_named, set_endpoint};
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
+#[non_exhaustive]
 pub struct Berry {
     pub id: i16,
     pub name: String,
@@ -27,6 +28,7 @@ pub struct Berry {
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
+#[non_exhaustive]
 pub struct BerryFlavorMap {
     pub potency: u8,
     pub flavor: NamedAPIResource<BerryFlavor>,
@@ -34,6 +36,7 @@ pub struct BerryFlavorMap {
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
+#[non_exhaustive]
 pub struct BerryFirmness {
     pub id: i16,
     pub name: String,
@@ -43,6 +46,7 @@ pub struct BerryFirmness {
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
+#[non_exhaustive]
 pub struct BerryFlavor {
     pub id: i16,
     pub name: String,
@@ -53,6 +57,7 @@ pub struct BerryFlavor {
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
+#[non_exhaustive]
 pub struct FlavorBerryMap {
     pub potency: u8,
     pub berry: NamedAPIResource<Berry>,

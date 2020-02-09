@@ -10,6 +10,7 @@ use crate::{impl_id_and_named, set_endpoint};
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
+#[non_exhaustive]
 pub struct Generation {
     pub id: i16,
     pub name: String,
@@ -24,6 +25,7 @@ pub struct Generation {
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
+#[non_exhaustive]
 pub struct Pokedex {
     pub id: i16,
     pub name: String,
@@ -37,6 +39,7 @@ pub struct Pokedex {
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
+#[non_exhaustive]
 pub struct PokemonEntry {
     pub entry_number: u16,
     pub pokemon_species: NamedAPIResource<PokemonSpecies>,
@@ -44,6 +47,7 @@ pub struct PokemonEntry {
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
+#[non_exhaustive]
 pub struct Version {
     pub id: i16,
     pub name: String,
@@ -53,6 +57,7 @@ pub struct Version {
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
+#[non_exhaustive]
 pub struct VersionGroup {
     pub id: i16,
     pub name: String,

@@ -9,6 +9,7 @@ use crate::{impl_id, impl_id_and_named, set_endpoint};
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
+#[non_exhaustive]
 pub struct ContestType {
     pub id: i16,
     pub name: String,
@@ -18,6 +19,7 @@ pub struct ContestType {
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
+#[non_exhaustive]
 pub struct ContestName {
     pub name: String,
     pub color: String,
@@ -26,6 +28,7 @@ pub struct ContestName {
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
+#[non_exhaustive]
 pub struct ContestEffect {
     pub id: i16,
     pub appeal: u8,
@@ -36,6 +39,7 @@ pub struct ContestEffect {
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
+#[non_exhaustive]
 pub struct SuperContestEffect {
     pub id: i16,
     pub appeal: u8,

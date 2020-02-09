@@ -11,6 +11,7 @@ use crate::{impl_id_and_named, set_endpoint};
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
+#[non_exhaustive]
 pub struct Move {
     pub id: i16,
     pub name: String,
@@ -40,6 +41,7 @@ pub struct Move {
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
+#[non_exhaustive]
 pub struct ContestComboSets {
     pub normal: ContestComboDetail,
     #[serde(rename = "super")]
@@ -48,6 +50,7 @@ pub struct ContestComboSets {
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
+#[non_exhaustive]
 pub struct ContestComboDetail {
     pub use_before: Option<Vec<NamedAPIResource<Move>>>,
     pub use_after: Option<Vec<NamedAPIResource<Move>>>,
@@ -55,6 +58,7 @@ pub struct ContestComboDetail {
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
+#[non_exhaustive]
 pub struct MoveFlavorText {
     pub flavor_text: String,
     pub language: NamedAPIResource<Language>, // incorrectly documented as list NamedAPIResource (Move)
@@ -63,6 +67,7 @@ pub struct MoveFlavorText {
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
+#[non_exhaustive]
 pub struct MoveMetaData {
     pub ailment: NamedAPIResource<MoveAilment>,
     pub category: NamedAPIResource<MoveCategory>, // incorrectly documented as NamedApiResource (Move)
@@ -80,6 +85,7 @@ pub struct MoveMetaData {
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
+#[non_exhaustive]
 pub struct MoveStatChange {
     pub change: i8,
     pub stat: NamedAPIResource<Stat>,
@@ -87,6 +93,7 @@ pub struct MoveStatChange {
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
+#[non_exhaustive]
 pub struct PastMoveStatValues {
     pub accuracy: Option<u8>,
     pub effect_chance: Option<u8>,
@@ -100,6 +107,7 @@ pub struct PastMoveStatValues {
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
+#[non_exhaustive]
 pub struct MoveAilment {
     pub id: i16,
     pub name: String,
@@ -109,6 +117,7 @@ pub struct MoveAilment {
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
+#[non_exhaustive]
 pub struct MoveBattleStyle {
     pub id: i16,
     pub name: String,
@@ -118,6 +127,7 @@ pub struct MoveBattleStyle {
 // incorrectly documeted as ModelName
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
+#[non_exhaustive]
 pub struct MoveCategory {
     pub id: i16,
     pub name: String,
@@ -127,6 +137,7 @@ pub struct MoveCategory {
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
+#[non_exhaustive]
 pub struct MoveDamageClass {
     pub id: i16,
     pub name: String,
@@ -137,6 +148,7 @@ pub struct MoveDamageClass {
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
+#[non_exhaustive]
 pub struct MoveLearnMethod {
     pub id: i16,
     pub name: String,
@@ -147,6 +159,7 @@ pub struct MoveLearnMethod {
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
+#[non_exhaustive]
 pub struct MoveTarget {
     pub id: i16,
     pub name: String,

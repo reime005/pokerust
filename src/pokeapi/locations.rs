@@ -10,6 +10,7 @@ use crate::{impl_id_and_named, set_endpoint};
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
+#[non_exhaustive]
 pub struct Location {
     pub id: i16,
     pub name: String,
@@ -21,6 +22,7 @@ pub struct Location {
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
+#[non_exhaustive]
 pub struct LocationArea {
     pub id: i16,
     pub name: String,
@@ -33,6 +35,7 @@ pub struct LocationArea {
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
+#[non_exhaustive]
 pub struct EncouterMethodRate {
     pub encounter_method: NamedAPIResource<EncounterMethod>,
     pub version_details: Vec<EncounterVersionDetails>,
@@ -40,6 +43,7 @@ pub struct EncouterMethodRate {
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
+#[non_exhaustive]
 pub struct EncounterVersionDetails {
     pub rate: u8,
     pub version: NamedAPIResource<Version>,
@@ -47,6 +51,7 @@ pub struct EncounterVersionDetails {
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
+#[non_exhaustive]
 pub struct PokemonEncouter {
     pub pokemon: NamedAPIResource<Pokemon>,
     pub version_details: Vec<VersionEncounterDetail>,
@@ -54,6 +59,7 @@ pub struct PokemonEncouter {
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
+#[non_exhaustive]
 pub struct PalParkArea {
     pub id: i16,
     pub name: String,
@@ -63,6 +69,7 @@ pub struct PalParkArea {
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
+#[non_exhaustive]
 pub struct PalParkEncounterSpecies {
     pub base_score: u8,
     pub rate: u8,
@@ -71,6 +78,7 @@ pub struct PalParkEncounterSpecies {
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
+#[non_exhaustive]
 pub struct Region {
     pub id: i16,
     pub locations: Vec<NamedAPIResource<Location>>,

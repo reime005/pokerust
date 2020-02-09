@@ -10,6 +10,7 @@ use crate::{impl_id_and_named, set_endpoint};
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
+#[non_exhaustive]
 pub struct Item {
     pub id: i16,
     pub name: String,
@@ -30,12 +31,14 @@ pub struct Item {
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
+#[non_exhaustive]
 pub struct ItemSprites {
     pub default: String,
 }
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
+#[non_exhaustive]
 pub struct ItemHolderPokemon {
     pub pokemon: NamedAPIResource<Pokemon>, // incorrectly documented as string
     pub version_details: Vec<ItemHolderPokemonVersionDetail>,
@@ -43,6 +46,7 @@ pub struct ItemHolderPokemon {
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
+#[non_exhaustive]
 pub struct ItemHolderPokemonVersionDetail {
     pub rarity: u8, // incorrectly documented as string
     pub version: NamedAPIResource<Version>,
@@ -50,6 +54,7 @@ pub struct ItemHolderPokemonVersionDetail {
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
+#[non_exhaustive]
 pub struct ItemAttribute {
     pub id: i16,
     pub name: String,
@@ -60,6 +65,7 @@ pub struct ItemAttribute {
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
+#[non_exhaustive]
 pub struct ItemCategory {
     pub id: i16,
     pub name: String,
@@ -70,6 +76,7 @@ pub struct ItemCategory {
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
+#[non_exhaustive]
 pub struct ItemFlingEffect {
     pub id: i16,
     pub name: String,
@@ -79,6 +86,7 @@ pub struct ItemFlingEffect {
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
+#[non_exhaustive]
 pub struct ItemPocket {
     pub id: i16,
     pub name: String,

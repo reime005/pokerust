@@ -10,6 +10,7 @@ use crate::{impl_id, set_endpoint};
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
+#[non_exhaustive]
 pub struct Machine {
     pub id: i16,
     pub item: NamedAPIResource<Item>,

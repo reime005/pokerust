@@ -6,6 +6,7 @@ use super::utility::*;
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
+#[non_exhaustive]
 pub struct APIResourceList<T> {
     pub count: u64,
     pub next: Option<String>,
@@ -15,6 +16,7 @@ pub struct APIResourceList<T> {
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
+#[non_exhaustive]
 pub struct NamedAPIResourceList<T> {
     pub count: u64,
     pub next: Option<String>,

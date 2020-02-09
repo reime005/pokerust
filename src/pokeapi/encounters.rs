@@ -7,6 +7,7 @@ use crate::{impl_id_and_named, set_endpoint};
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
+#[non_exhaustive]
 pub struct EncounterMethod {
     pub id: i16,
     pub name: String,
@@ -16,6 +17,7 @@ pub struct EncounterMethod {
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
+#[non_exhaustive]
 pub struct EncounterCondition {
     pub id: i16,
     pub name: String,
@@ -25,6 +27,7 @@ pub struct EncounterCondition {
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
+#[non_exhaustive]
 pub struct EncounterConditionValue {
     pub id: i16,
     pub name: String,

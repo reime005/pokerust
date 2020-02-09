@@ -11,7 +11,7 @@ use crate::{impl_id_and_named, set_endpoint};
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 pub struct Generation {
-    pub id: i64,
+    pub id: i16,
     pub name: String,
     pub abilities: Vec<NamedAPIResource<Ability>>,
     pub names: Vec<Name>,
@@ -25,7 +25,7 @@ pub struct Generation {
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 pub struct Pokedex {
-    pub id: i64,
+    pub id: i16,
     pub name: String,
     pub is_main_series: bool,
     pub descriptions: Vec<Description>,
@@ -38,14 +38,14 @@ pub struct Pokedex {
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 pub struct PokemonEntry {
-    pub entry_number: u64,
+    pub entry_number: u16,
     pub pokemon_species: NamedAPIResource<PokemonSpecies>,
 }
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 pub struct Version {
-    pub id: i64,
+    pub id: i16,
     pub name: String,
     pub names: Vec<Name>,
     pub version_group: NamedAPIResource<VersionGroup>,
@@ -54,9 +54,9 @@ pub struct Version {
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 pub struct VersionGroup {
-    pub id: i64,
+    pub id: i16,
     pub name: String,
-    pub order: u64,
+    pub order: u16,
     pub generation: NamedAPIResource<Generation>,
     pub move_learn_methods: Vec<NamedAPIResource<MoveLearnMethod>>,
     pub pokedexes: Vec<NamedAPIResource<Pokedex>>,

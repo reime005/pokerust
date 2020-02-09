@@ -2,7 +2,7 @@ use pokerust::*;
 
 mod common;
 
-fn test_from_id<T: FromId>(id: i64, json: &str) {
+fn test_from_id<T: FromId>(id: i16, json: &str) {
     let _m = common::make_mock(&format!("/api/v2/{}/{}/", T::ENDPOINT, id), json);
     T::from_id(id).unwrap();
 }

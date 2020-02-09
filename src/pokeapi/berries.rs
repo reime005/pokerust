@@ -11,14 +11,14 @@ use crate::{impl_id_and_named, set_endpoint};
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 pub struct Berry {
-    pub id: i64,
+    pub id: i16,
     pub name: String,
-    pub growth_time: u64,
-    pub max_harvest: u64,
-    pub natural_gift_power: u64,
-    pub size: u64,
-    pub smoothness: u64,
-    pub soil_dryness: u64,
+    pub growth_time: u8,
+    pub max_harvest: u8,
+    pub natural_gift_power: u8,
+    pub size: u16,
+    pub smoothness: u8,
+    pub soil_dryness: u8,
     pub firmness: NamedAPIResource<BerryFirmness>,
     pub flavors: Vec<BerryFlavorMap>,
     pub item: NamedAPIResource<Item>,
@@ -28,14 +28,14 @@ pub struct Berry {
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 pub struct BerryFlavorMap {
-    pub potency: u64,
+    pub potency: u8,
     pub flavor: NamedAPIResource<BerryFlavor>,
 }
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 pub struct BerryFirmness {
-    pub id: i64,
+    pub id: i16,
     pub name: String,
     pub berries: Vec<NamedAPIResource<Berry>>,
     pub names: Vec<Name>,
@@ -44,7 +44,7 @@ pub struct BerryFirmness {
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 pub struct BerryFlavor {
-    pub id: i64,
+    pub id: i16,
     pub name: String,
     pub berries: Vec<FlavorBerryMap>,
     pub contest_type: NamedAPIResource<ContestType>,
@@ -54,7 +54,7 @@ pub struct BerryFlavor {
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 pub struct FlavorBerryMap {
-    pub potency: u64,
+    pub potency: u8,
     pub berry: NamedAPIResource<Berry>,
 }
 

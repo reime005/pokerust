@@ -13,7 +13,7 @@ use crate::cache::get_resource;
 use std::marker::PhantomData;
 
 // Extract the id from a url containing one, e.g. https://pokeapi.co/api/v2/item/38/
-fn id_from_url(url: &str) -> i64 {
+fn id_from_url(url: &str) -> i16 {
     let url = &url[..(url.len() - 1)];
     url[(url.rfind('/').unwrap() + 1)..].parse().unwrap()
 }
@@ -21,7 +21,7 @@ fn id_from_url(url: &str) -> i64 {
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 pub struct Language {
-    pub id: i64,
+    pub id: i16,
     pub name: String,
     pub official: bool,
     pub iso639: String,
@@ -38,7 +38,7 @@ pub struct APIResource<T> {
 }
 
 impl<T> Id for APIResource<T> {
-    fn id(&self) -> i64 {
+    fn id(&self) -> i16 {
         id_from_url(&self.url)
     }
 }
@@ -69,10 +69,10 @@ pub struct Effect {
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 pub struct Encounter {
-    pub min_level: u64,
-    pub max_level: u64,
+    pub min_level: u8,
+    pub max_level: u8,
     pub condition_values: Vec<NamedAPIResource<EncounterConditionValue>>,
-    pub chance: u64,
+    pub chance: u8,
     pub method: NamedAPIResource<EncounterMethod>,
 }
 
@@ -87,7 +87,7 @@ pub struct FlavorText {
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 pub struct GenerationGameIndex {
-    pub game_index: u64,
+    pub game_index: i16,
     pub generation: NamedAPIResource<Generation>,
 }
 
@@ -115,7 +115,7 @@ pub struct NamedAPIResource<T> {
 }
 
 impl<T> Id for NamedAPIResource<T> {
-    fn id(&self) -> i64 {
+    fn id(&self) -> i16 {
         id_from_url(&self.url)
     }
 }
@@ -147,14 +147,14 @@ pub struct VerboseEffect {
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 pub struct VersionEncounterDetail {
     pub version: NamedAPIResource<Version>,
-    pub max_chance: u64,
+    pub max_chance: u16,
     pub encounter_details: Vec<Encounter>,
 }
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 pub struct VersionGameIndex {
-    pub game_index: u64,
+    pub game_index: i16,
     pub version: NamedAPIResource<Version>,
 }
 

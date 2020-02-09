@@ -8,16 +8,16 @@ use crate::{impl_id_and_named, set_endpoint};
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 pub struct EncounterMethod {
-    pub id: i64,
+    pub id: i16,
     pub name: String,
-    pub order: u64,
+    pub order: u16,
     pub names: Vec<Name>,
 }
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 pub struct EncounterCondition {
-    pub id: i64,
+    pub id: i16,
     pub name: String,
     pub names: Vec<Name>,
     pub values: Vec<NamedAPIResource<EncounterConditionValue>>,
@@ -26,7 +26,7 @@ pub struct EncounterCondition {
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 pub struct EncounterConditionValue {
-    pub id: i64,
+    pub id: i16,
     pub name: String,
     pub condition: NamedAPIResource<EncounterCondition>, // incorrectly documented as list NamedAPIResource
     pub names: Vec<Name>,

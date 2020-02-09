@@ -37,18 +37,18 @@ pub trait Named {
 }
 
 pub trait Id {
-    fn id(&self) -> i64;
+    fn id(&self) -> i16;
 }
 
 pub trait FromId: Id + Endpoint
 where
     Self: Sized,
 {
-    fn from_id(id: i64) -> Result<Self, minreq::Error>;
+    fn from_id(id: i16) -> Result<Self, minreq::Error>;
 }
 
 impl<T: Endpoint + Id + DeserializeOwned> FromId for T {
-    fn from_id(id: i64) -> Result<Self, ::minreq::Error> {
+    fn from_id(id: i16) -> Result<Self, ::minreq::Error> {
         crate::cache::get_resource(&format!("{}/{}/", T::ENDPOINT, id))?.json::<Self>()
     }
 }

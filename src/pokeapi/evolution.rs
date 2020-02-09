@@ -12,7 +12,7 @@ use crate::{impl_id, impl_id_and_named, set_endpoint};
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 pub struct EvolutionChain {
-    pub id: i64,
+    pub id: i16,
     pub baby_trigger_item: Option<NamedAPIResource<Item>>,
     pub chain: ChainLink,
 }
@@ -31,19 +31,19 @@ pub struct ChainLink {
 pub struct EvolutionDetail {
     pub item: Option<NamedAPIResource<Item>>,
     pub trigger: NamedAPIResource<EvolutionTrigger>,
-    pub gender: Option<u64>,
+    pub gender: Option<i8>,
     pub held_item: Option<NamedAPIResource<Item>>,
     pub known_move: Option<NamedAPIResource<Move>>,
     pub known_move_type: Option<NamedAPIResource<Type>>,
     pub location: Option<NamedAPIResource<Location>>,
-    pub min_level: Option<u64>,
-    pub min_happiness: Option<u64>,
-    pub min_beauty: Option<u64>,
-    pub min_affection: Option<u64>,
+    pub min_level: Option<u8>,
+    pub min_happiness: Option<u8>,
+    pub min_beauty: Option<u8>,
+    pub min_affection: Option<u8>,
     pub needs_overworld_rain: bool,
     pub party_species: Option<NamedAPIResource<PokemonSpecies>>,
     pub party_type: Option<NamedAPIResource<Type>>,
-    pub relative_physical_stats: Option<i64>,
+    pub relative_physical_stats: Option<i8>,
     pub time_of_day: String,
     pub trade_species: Option<NamedAPIResource<PokemonSpecies>>,
     pub turn_upside_down: bool,
@@ -52,7 +52,7 @@ pub struct EvolutionDetail {
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 pub struct EvolutionTrigger {
-    pub id: i64,
+    pub id: i16,
     pub name: String,
     pub names: Vec<Name>,
     pub pokemon_species: Vec<NamedAPIResource<PokemonSpecies>>,

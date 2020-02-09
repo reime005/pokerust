@@ -12,13 +12,13 @@ use crate::{impl_id_and_named, set_endpoint};
 // #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 pub struct Move {
-    pub id: i64,
+    pub id: i16,
     pub name: String,
-    pub accuracy: Option<u64>,
-    pub effect_chance: Option<u64>,
-    pub pp: Option<u64>,
-    pub priority: i64,
-    pub power: Option<u64>,
+    pub accuracy: Option<u8>,
+    pub effect_chance: Option<u8>,
+    pub pp: Option<u8>,
+    pub priority: i8,
+    pub power: Option<u8>,
     pub contest_combos: Option<ContestComboSets>,
     pub contest_type: Option<NamedAPIResource<ContestType>>,
     pub contest_effect: Option<APIResource<ContestEffect>>,
@@ -66,32 +66,32 @@ pub struct MoveFlavorText {
 pub struct MoveMetaData {
     pub ailment: NamedAPIResource<MoveAilment>,
     pub category: NamedAPIResource<MoveCategory>, // incorrectly documented as NamedApiResource (Move)
-    pub min_hits: Option<u64>,
-    pub max_hits: Option<u64>,
-    pub min_turns: Option<u64>,
-    pub max_turns: Option<u64>,
-    pub drain: i64,
-    pub healing: i64,
-    pub crit_rate: u64,
-    pub ailment_chance: u64,
-    pub flinch_chance: u64,
-    pub stat_chance: u64,
+    pub min_hits: Option<u8>,
+    pub max_hits: Option<u8>,
+    pub min_turns: Option<u8>,
+    pub max_turns: Option<u8>,
+    pub drain: i8,
+    pub healing: i8,
+    pub crit_rate: u8,
+    pub ailment_chance: u8,
+    pub flinch_chance: u8,
+    pub stat_chance: u8,
 }
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 pub struct MoveStatChange {
-    pub change: i64,
+    pub change: i8,
     pub stat: NamedAPIResource<Stat>,
 }
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 pub struct PastMoveStatValues {
-    pub accuracy: Option<u64>,
-    pub effect_chance: Option<u64>,
-    pub power: Option<u64>,
-    pub pp: Option<u64>,
+    pub accuracy: Option<u8>,
+    pub effect_chance: Option<u8>,
+    pub power: Option<u8>,
+    pub pp: Option<u8>,
     pub effect_entries: Vec<VerboseEffect>,
     #[serde(rename = "type")]
     type_: Option<NamedAPIResource<Type>>,
@@ -101,7 +101,7 @@ pub struct PastMoveStatValues {
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 pub struct MoveAilment {
-    pub id: i64,
+    pub id: i16,
     pub name: String,
     pub moves: Vec<NamedAPIResource<Move>>,
     pub names: Vec<Name>,
@@ -110,7 +110,7 @@ pub struct MoveAilment {
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 pub struct MoveBattleStyle {
-    pub id: i64,
+    pub id: i16,
     pub name: String,
     pub names: Vec<Name>,
 }
@@ -119,7 +119,7 @@ pub struct MoveBattleStyle {
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 pub struct MoveCategory {
-    pub id: i64,
+    pub id: i16,
     pub name: String,
     pub moves: Vec<NamedAPIResource<Move>>,
     pub descriptions: Vec<Description>,
@@ -128,7 +128,7 @@ pub struct MoveCategory {
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 pub struct MoveDamageClass {
-    pub id: i64,
+    pub id: i16,
     pub name: String,
     pub descriptions: Vec<Description>,
     pub moves: Vec<NamedAPIResource<Move>>,
@@ -138,7 +138,7 @@ pub struct MoveDamageClass {
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 pub struct MoveLearnMethod {
-    pub id: i64,
+    pub id: i16,
     pub name: String,
     pub descriptions: Vec<Description>,
     pub names: Vec<Name>,
@@ -148,7 +148,7 @@ pub struct MoveLearnMethod {
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 pub struct MoveTarget {
-    pub id: i64,
+    pub id: i16,
     pub name: String,
     pub descriptions: Vec<Description>,
     pub moves: Vec<NamedAPIResource<Move>>,

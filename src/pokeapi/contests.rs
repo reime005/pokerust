@@ -10,7 +10,7 @@ use crate::{impl_id, impl_id_and_named, set_endpoint};
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 pub struct ContestType {
-    pub id: i64,
+    pub id: i16,
     pub name: String,
     pub berry_flavor: NamedAPIResource<BerryFlavor>,
     pub names: Vec<ContestName>,
@@ -27,9 +27,9 @@ pub struct ContestName {
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 pub struct ContestEffect {
-    pub id: i64,
-    pub appeal: u64,
-    pub jam: u64,
+    pub id: i16,
+    pub appeal: u8,
+    pub jam: u8,
     pub effect_entries: Vec<Effect>,
     pub flavor_text_entries: Vec<FlavorText>,
 }
@@ -37,8 +37,8 @@ pub struct ContestEffect {
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 pub struct SuperContestEffect {
-    pub id: i64,
-    pub appeal: u64,
+    pub id: i16,
+    pub appeal: u8,
     pub flavor_text_entries: Vec<FlavorText>,
     pub moves: Vec<NamedAPIResource<Move>>,
 }

@@ -11,7 +11,7 @@ use crate::{impl_id_and_named, set_endpoint};
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 pub struct Location {
-    pub id: i64,
+    pub id: i16,
     pub name: String,
     pub region: Option<NamedAPIResource<Region>>,
     pub names: Vec<Name>,
@@ -22,9 +22,9 @@ pub struct Location {
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 pub struct LocationArea {
-    pub id: i64,
+    pub id: i16,
     pub name: String,
-    pub game_index: u64,
+    pub game_index: i16,
     pub encounter_method_rates: Vec<EncouterMethodRate>,
     pub location: NamedAPIResource<Location>,
     pub names: Vec<Name>,
@@ -41,7 +41,7 @@ pub struct EncouterMethodRate {
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 pub struct EncounterVersionDetails {
-    pub rate: u64,
+    pub rate: u8,
     pub version: NamedAPIResource<Version>,
 }
 
@@ -55,7 +55,7 @@ pub struct PokemonEncouter {
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 pub struct PalParkArea {
-    pub id: i64,
+    pub id: i16,
     pub name: String,
     pub names: Vec<Name>,
     pub pokemon_encounters: Vec<PalParkEncounterSpecies>,
@@ -64,15 +64,15 @@ pub struct PalParkArea {
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 pub struct PalParkEncounterSpecies {
-    pub base_score: u64,
-    pub rate: u64,
+    pub base_score: u8,
+    pub rate: u8,
     pub pokemon_species: NamedAPIResource<PokemonSpecies>,
 }
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 pub struct Region {
-    pub id: i64,
+    pub id: i16,
     pub locations: Vec<NamedAPIResource<Location>>,
     pub name: String,
     pub names: Vec<Name>,

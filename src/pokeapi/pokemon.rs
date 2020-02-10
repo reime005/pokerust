@@ -195,6 +195,7 @@ pub struct Pokemon {
 }
 
 impl Pokemon {
+    // Fetch list of LocationAreaEncounters from the API
     pub fn get_encounters(&self) -> Result<Vec<LocationAreaEncounter>, minreq::Error> {
         let loc = get_api_loc_from_url(&self.location_area_encounters);
         get_resource(loc)?.json::<Vec<LocationAreaEncounter>>()

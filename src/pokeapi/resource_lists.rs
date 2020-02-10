@@ -26,14 +26,18 @@ pub struct NamedAPIResourceList<T> {
     pub results: Vec<NamedAPIResource<T>>,
 }
 
+/// Trait for lists of `(Named)APIResources`
 pub trait List
 where
     Self: Sized,
 {
+    /// Get the number of items in this list
     fn count(&self) -> &u64;
 
+    /// Get the next list
     fn next_list(&self) -> Result<Option<Self>, minreq::Error>;
 
+    /// Get the previous list
     fn previous_list(&self) -> Result<Option<Self>, minreq::Error>;
 }
 

@@ -1,36 +1,41 @@
 # pokerust
 
-Wrapper library for https://pokeapi.co/ v2 with caching support.
+Wrapper library for <https://pokeapi.co/> v2 with caching support.
 
 ## Documentation
 
 Documentation for the crate can be found on
-[docs.rs](https://docs.rs/pokerust). For documentation of the API, see
+[docs.rs](https://docs.rs/pokerust) (WIP). For documentation of the API, see
 <https://pokeapi.co/docs/v2.html>.
 
 ## Basic Usage
 
 Get an object from an API by id
+
 ```rust
-use pokerust::{Berry, FromId}
+use pokerust::{Berry, FromId};
 
 fn main() {
     let berry = Berry::from_id(1).unwrap();
 }
 ```
+
 or by name
+
 ```rust
-use pokerust::{Berry, FromName}
+use pokerust::{Berry, FromName};
 
 fn main() {
     let berry = Berry::from_name("cheri").unwrap();
 }
 ```
+
 API responses are automatically cached.
 
 You can also fetch the resource lists:
+
 ```rust
-use pokerust::{Item, Endpoint, List}
+use pokerust::{Item, Endpoint, List};
 
 fn main() {
     let items = Item::list(5, 20).unwrap();  // ?offset=5&limit=20
@@ -44,15 +49,18 @@ fn main() {
 }
 ```
 
-To get resources pointed to by `(Named)APIResource`, use `get_resource()`:
+To get resources pointed to by `(Named)APIResource`, use `get()`:
+
 ```rust
 let berry = Berry::from_name("cheri").unwrap();
-let berry_item = berry.item.get_resource().unwrap(); // berry_item is an Item
+let berry_item = berry.item.get().unwrap(); // berry_item is an Item
 ```
+
 This can be chained:
+
 ```rust
-let berry = Berry::from_name("cheri").unwrap();
-let berry_item_fling_effect = berry.item.get_resource().unwrap().fling_effect.get_resource().unwrap();
+let marill = PokemonSpecies::from_name("marill").unwrap();
+let sea_incense = marill.evolution_chain.get().unwrap().baby_trigger_item.unwrap().get().unwrap();
 ```
 
 The location of the pokeapi used can be changed by setting the

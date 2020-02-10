@@ -1,6 +1,6 @@
-/// Gets the location of an API resource from a full url, minus the url
-/// and common prefix, e.g. "https://pokeapi.co/api/v2/"
+/// Helper macros and other junk for internal use only
 
+#[doc(hidden)]
 #[macro_export]
 macro_rules! set_endpoint {
     { $A:ty, $B:tt, $C:literal } => {
@@ -20,6 +20,7 @@ impl crate::Endpoint for $A {
 };
 }
 
+#[doc(hidden)]
 #[macro_export]
 macro_rules! impl_id {
     { $A:ty } => {
@@ -31,6 +32,7 @@ impl crate::Id for $A {
 };
 }
 
+#[doc(hidden)]
 #[macro_export]
 macro_rules! impl_named {
     { $A:ty } => {
@@ -42,6 +44,7 @@ impl crate::Named for $A {
 };
 }
 
+#[doc(hidden)]
 #[macro_export]
 macro_rules! impl_id_and_named {
     { $A:ty } => {

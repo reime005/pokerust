@@ -2,6 +2,8 @@
 
 use serde::de::DeserializeOwned;
 
+use crate::cache::get_resource;
+
 mod cache;
 mod pokeapi;
 
@@ -27,9 +29,9 @@ pub trait Endpoint {
 
     const ENDPOINT: &'static str;
 
-    fn list(offset: usize, limit: usize) -> Result<Self::ResourceListKind, ::minreq::Error>;
+    fn list(offset: usize, limit: usize) -> Result<Self::ResourceListKind, minreq::Error>;
 
-    fn full_list() -> Result<Self::ResourceListKind, ::minreq::Error>;
+    fn full_list() -> Result<Self::ResourceListKind, minreq::Error>;
 }
 
 pub trait Named {
@@ -48,8 +50,8 @@ where
 }
 
 impl<T: Endpoint + Id + DeserializeOwned> FromId for T {
-    fn from_id(id: i16) -> Result<Self, ::minreq::Error> {
-        crate::cache::get_resource(&format!("{}/{}/", T::ENDPOINT, id))?.json::<Self>()
+    fn from_id(id: i16) -> Result<Self, minreq::Error> {
+        get_resource(&format!("{}/{}/", T::ENDPOINT, id))?.json::<Self>()
     }
 }
 
@@ -61,7 +63,7 @@ where
 }
 
 impl<T: Endpoint + Named + DeserializeOwned> FromName for T {
-    fn from_name(id: &str) -> Result<Self, ::minreq::Error> {
-        crate::cache::get_resource(&format!("{}/{}/", T::ENDPOINT, id))?.json::<Self>()
+    fn from_name(id: &str) -> Result<Self, minreq::Error> {
+        get_resource(&format!("{}/{}/", T::ENDPOINT, id))?.json::<Self>()
     }
 }

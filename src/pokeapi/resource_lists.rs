@@ -4,6 +4,8 @@ use serde::{Deserialize, Serialize};
 use super::get_api_loc_from_url;
 use super::utility::*;
 
+use crate::cache::get_resource;
+
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
@@ -45,7 +47,7 @@ where
 
     fn next_list(&self) -> Result<Option<Self>, minreq::Error> {
         if let Some(loc) = &self.next {
-            let list = crate::cache::get_resource(get_api_loc_from_url(&loc))?.json::<Self>()?;
+            let list = get_resource(get_api_loc_from_url(&loc))?.json::<Self>()?;
             Ok(Some(list))
         } else {
             Ok(None)
@@ -54,7 +56,7 @@ where
 
     fn previous_list(&self) -> Result<Option<Self>, minreq::Error> {
         if let Some(loc) = &self.next {
-            let list = crate::cache::get_resource(get_api_loc_from_url(&loc))?.json::<Self>()?;
+            let list = get_resource(get_api_loc_from_url(&loc))?.json::<Self>()?;
             Ok(Some(list))
         } else {
             Ok(None)

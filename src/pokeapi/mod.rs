@@ -38,5 +38,8 @@ mod tests {
             get_api_loc_from_url("https://pokeapi.co/api/v2/api/v2/ability/?offset=20&limit=20"),
             "ability/?offset=20&limit=20"
         );
+        assert_eq!(
+            get_api_loc_from_url("https://pokeapi.co/api/v2/pokemon/25/encounters"),
+            "pokemon/25/encounters")
     }
 }

@@ -8,8 +8,10 @@ use super::locations::*;
 use super::moves::*;
 use super::resource_lists::*;
 use super::utility::*;
+use super::get_api_loc_from_url;
 
 use crate::{impl_id, impl_id_and_named, set_endpoint};
+use crate::cache::get_resource;
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
@@ -190,6 +192,13 @@ pub struct Pokemon {
     pub species: NamedAPIResource<PokemonSpecies>,
     pub stats: Vec<PokemonStat>,
     pub types: Vec<PokemonType>,
+}
+
+impl Pokemon {
+    pub fn get_encounters(&self) -> Result<Vec<LocationAreaEncounter>, minreq::Error> {
+        let loc = get_api_loc_from_url(&self.location_area_encounters);
+        get_resource(loc)?.json::<Vec<LocationAreaEncounter>>()
+    }
 }
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]

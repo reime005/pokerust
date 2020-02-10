@@ -15,7 +15,7 @@ fn [<get_every_ $B>]() {
     for [<$B _res>] in [<$B _list>].results {
         let $B = [<$B _res>].get().unwrap();
 
-        assert_eq!([<$B _res>].id(), $B.id)
+        assert_eq!([<$B _res>].id(), $B.id);
     }
 }
 }
@@ -58,7 +58,22 @@ test_every!{Nature, nature}
 test_every!{PalParkArea, pal_park_area}
 test_every!{PokeathlonStat, pokeathlon_stat}
 test_every!{Pokedex, pokedex}
-test_every!{Pokemon, pokemon}
+
+// test_every!{Pokemon, pokemon}
+// For pokemon we need to get the encounters, too
+#[test]
+#[ignore]
+fn get_every_pokemon_with_encounters() {
+    let pokemon_list = Pokemon::full_list().unwrap();
+
+    for pokemon_res in pokemon_list.results {
+        let pokemon = pokemon_res.get().unwrap();
+        pokemon.get_encounters().unwrap();
+
+        assert_eq!(pokemon_res.id(), pokemon.id);
+    }
+}
+
 test_every!{PokemonColor, pokemon_color}
 test_every!{PokemonForm, pokemon_form}
 test_every!{PokemonHabitat, pokemon_habitat}

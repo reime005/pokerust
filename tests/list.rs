@@ -3,7 +3,10 @@ use pokerust::*;
 mod common;
 
 fn test_full_list<T: Endpoint>(json: &str) {
-    let _m = common::make_mock(&format!("/api/v2/{}/?offset=0&limit=9999", T::ENDPOINT), json);
+    let _m = common::make_mock(
+        &format!("/api/v2/{}/?offset=0&limit=9999", T::ENDPOINT),
+        json,
+    );
     T::full_list().unwrap();
 }
 

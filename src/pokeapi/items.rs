@@ -2,9 +2,9 @@ use serde::{Deserialize, Serialize};
 
 use super::evolution::*;
 use super::games::*;
+use super::pokemon::*;
 use super::resource_lists::*;
 use super::utility::*;
-use super::pokemon::*;
 
 use crate::{impl_id_and_named, set_endpoint};
 

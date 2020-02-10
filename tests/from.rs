@@ -513,7 +513,10 @@ fn pokemon_encounters() {
     let name = "pikachu";
     let id = 25;
     let _m1 = common::make_mock(&format!("/api/v2/pokemon/{}/", name), PIKACHU_JSON);
-    let _m2 = common::make_mock(&format!("/api/v2/pokemon/{}/encounters", id), PIKACHU_ENCOUNTERS_JSON);
+    let _m2 = common::make_mock(
+        &format!("/api/v2/pokemon/{}/encounters", id),
+        PIKACHU_ENCOUNTERS_JSON,
+    );
 
     let pika = Pokemon::from_name(&name).unwrap();
     pika.get_encounters().unwrap();

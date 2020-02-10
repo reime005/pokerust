@@ -40,6 +40,7 @@ mod tests {
         );
         assert_eq!(
             get_api_loc_from_url("https://pokeapi.co/api/v2/pokemon/25/encounters"),
-            "pokemon/25/encounters")
+            "pokemon/25/encounters"
+        )
     }
 }

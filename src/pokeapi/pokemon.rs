@@ -3,15 +3,15 @@ use serde::{Deserialize, Serialize};
 use super::berries::*;
 use super::evolution::*;
 use super::games::*;
+use super::get_api_loc_from_url;
 use super::items::*;
 use super::locations::*;
 use super::moves::*;
 use super::resource_lists::*;
 use super::utility::*;
-use super::get_api_loc_from_url;
 
-use crate::{impl_id, impl_id_and_named, set_endpoint};
 use crate::cache::get_resource;
+use crate::{impl_id, impl_id_and_named, set_endpoint};
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]

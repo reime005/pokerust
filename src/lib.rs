@@ -5,7 +5,7 @@
 //! ## Basic Usage
 //!
 //! Get an object from an API by id
-//! ```ignore,no_run
+//! ```no_run
 //! use pokerust::{Berry, FromId};
 //!
 //! fn main() {
@@ -13,7 +13,7 @@
 //! }
 //! ```
 //! or by name
-//! ```ignore,no_run
+//! ```no_run
 //! use pokerust::{Berry, FromName};
 //!
 //! fn main() {
@@ -23,35 +23,40 @@
 //! API responses are automatically cached.
 //!
 //! You can also fetch the resource lists:
-//! ```ignore,no_run
-//! use pokerust::{Item, Endpoint, List};
+//! ```no_run
+//! # use std::error::Error;
+//! # use pokerust::{Item, Endpoint, List};
+//! # fn main() -> Result<(), Box<dyn Error>> {
+//! let items = Item::list(5, 20)?;  // ?offset=5&limit=20
 //!
-//! fn main() {
-//!     let items = Item::list(5, 20).unwrap();  // ?offset=5&limit=20
+//! // get the lists referenced in the next and previous fields
+//! items.previous_list()?;
+//! items.next_list()?;
 //!
-//!     // get the lists referenced in the next and previous fields
-//!     items.previous_list().unwrap();
-//!     items.next_list().unwrap();
-//!
-//!     // you can also just get the full list
-//!     let all_items = Item::full_list().unwrap();
-//! }
+//! // you can also just get the full list
+//! let all_items = Item::full_list()?;
+//! # Ok(())
+//! # }
 //! ```
 //!
 //! To get resources pointed to by `(Named)APIResource`, use `get()`:
-//! ```ignore,no_run
+//! ```no_run
+//! # use std::error::Error;
 //! # use pokerust::{Berry, FromName};
-//! # fn main() {
-//! let berry = Berry::from_name("cheri").unwrap();
-//! let berry_item = berry.item.get().unwrap(); // berry_item is an Item
+//! # fn main() -> Result<(), Box<dyn Error>> {
+//! let berry = Berry::from_name("cheri")?;
+//! let berry_item = berry.item.get()?; // berry_item is an Item
+//! # Ok(())
 //! # }
 //! ```
 //! This can be chained:
-//! ```ignore,no_run
+//! ```no_run
+//! # use std::error::Error;
 //! # use pokerust::{PokemonSpecies, FromName};
-//! # fn main() {
-//! let marill = PokemonSpecies::from_name("marill").unwrap();
-//! let sea_incense = marill.evolution_chain.get().unwrap().baby_trigger_item.unwrap().get().unwrap();
+//! # fn main() -> Result<(), Box<dyn Error>> {
+//! let marill = PokemonSpecies::from_name("marill")?;
+//! let sea_incense = marill.evolution_chain.get()?.baby_trigger_item.unwrap().get()?;
+//! # Ok(())
 //! # }
 //! ```
 //!

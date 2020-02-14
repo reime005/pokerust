@@ -35,25 +35,21 @@ API responses are automatically cached.
 You can also fetch the resource lists:
 
 ```rust
-use pokerust::{Item, Endpoint, List};
+let items = Item::list(5, 20)?;  // ?offset=5&limit=20
 
-fn main() {
-    let items = Item::list(5, 20).unwrap();  // ?offset=5&limit=20
+// get the lists referenced in the next and previous fields
+items.previous_list()?;
+items.next_list()?;
 
-    // get the lists referenced in the next and previous fields
-    items.previous_list().unwrap();
-    items.next_list().unwrap();
-
-    // you can also just get the full list
-    let all_items = Item::full_list().unwrap();
-}
+// you can also just get the full list
+let all_items = Item::full_list()?;
 ```
 
 To get resources pointed to by `(Named)APIResource`, use `get()`:
 
 ```rust
-let berry = Berry::from_name("cheri").unwrap();
-let berry_item = berry.item.get().unwrap(); // berry_item is an Item
+let marill = PokemonSpecies::from_name("marill").unwrap();
+let sea_incense = marill.evolution_chain.get()?.baby_trigger_item.unwrap().get()?;
 ```
 
 This can be chained:

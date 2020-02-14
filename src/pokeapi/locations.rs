@@ -6,8 +6,6 @@ use super::pokemon::*;
 use super::resource_lists::*;
 use super::utility::*;
 
-use crate::impl_id;
-
 use crate::{impl_id_and_named, set_endpoint};
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]

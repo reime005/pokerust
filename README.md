@@ -1,4 +1,4 @@
-# pokerust
+# Pokérust
 
 Wrapper library for <https://pokeapi.co/> v2 with caching support.
 

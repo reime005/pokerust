@@ -1,4 +1,4 @@
-//! # pokerust
+//! # Pokérust
 //!
 //! Rust wrapper for the pokeapi <https://pokeapi.co/>
 //!

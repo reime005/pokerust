@@ -51,15 +51,15 @@ let all_items = Item::full_list()?;
 To get resources pointed to by `(Named)APIResource`, use `get()`:
 
 ```rust
-let marill = PokemonSpecies::from_name("marill").unwrap();
-let sea_incense = marill.evolution_chain.get()?.baby_trigger_item.unwrap().get()?;
+let berry = Berry::from_name("cheri")?;
+let berry_item = berry.item.get()?; // berry_item is an Item
 ```
 
 This can be chained:
 
 ```rust
-let marill = PokemonSpecies::from_name("marill").unwrap();
-let sea_incense = marill.evolution_chain.get().unwrap().baby_trigger_item.unwrap().get().unwrap();
+let marill = PokemonSpecies::from_name("marill")?;
+let sea_incense = marill.evolution_chain.get()?.baby_trigger_item.unwrap().get()?;
 ```
 
 The location of the pokeapi used can be changed by setting the

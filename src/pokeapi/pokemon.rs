@@ -29,6 +29,7 @@ pub struct Ability {
     pub pokemon: Vec<AbilityPokemon>,
 }
 
+/// <https://pokeapi.co/docs/v2.html#abilityeffectchange>
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
@@ -37,6 +38,7 @@ pub struct AbilityEffectChange {
     pub version_group: NamedAPIResource<VersionGroup>,
 }
 
+/// <https://pokeapi.co/docs/v2.html#abilityflavortext>
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
@@ -46,6 +48,7 @@ pub struct AbilityFlavorText {
     pub version_group: NamedAPIResource<VersionGroup>,
 }
 
+/// <https://pokeapi.co/docs/v2.html#abilitypokemon>
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
@@ -89,6 +92,7 @@ pub struct Gender {
     pub required_for_evolution: Vec<NamedAPIResource<PokemonSpecies>>,
 }
 
+/// <https://pokeapi.co/docs/v2.html#pokemonspeciesgender>
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
@@ -110,6 +114,7 @@ pub struct GrowthRate {
     pub pokemon_species: Vec<NamedAPIResource<PokemonSpecies>>,
 }
 
+/// <https://pokeapi.co/docs/v2.html#growthrateexperiencelevel>
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
@@ -134,6 +139,7 @@ pub struct Nature {
     pub names: Vec<Name>,
 }
 
+/// <https://pokeapi.co/docs/v2.html#naturestatchange>
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
@@ -142,6 +148,7 @@ pub struct NatureStatChange {
     pub pokeathlon_stat: NamedAPIResource<PokeathlonStat>,
 }
 
+/// <https://pokeapi.co/docs/v2.html#movebattlestylepreference>
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
@@ -162,6 +169,7 @@ pub struct PokeathlonStat {
     pub affecting_natures: NaturePokeathlonStatAffectSets,
 }
 
+/// <https://pokeapi.co/docs/v2.html#naturepokeathlonstataffectsets>
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
@@ -170,6 +178,7 @@ pub struct NaturePokeathlonStatAffectSets {
     pub decrease: Vec<NaturePokeathlonStatAffect>,
 }
 
+/// <https://pokeapi.co/docs/v2.html#naturepokeathlonstataffect>
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
@@ -210,6 +219,7 @@ impl Pokemon {
     }
 }
 
+/// <https://pokeapi.co/docs/v2.html#pokemonability>
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
@@ -219,6 +229,7 @@ pub struct PokemonAbility {
     pub ability: NamedAPIResource<Ability>,
 }
 
+/// <https://pokeapi.co/docs/v2.html#pokemontype>
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
@@ -228,6 +239,7 @@ pub struct PokemonType {
     pub type_: NamedAPIResource<Type>,
 }
 
+/// <https://pokeapi.co/docs/v2.html#pokemonhelditem>
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
@@ -236,6 +248,7 @@ pub struct PokemonHeldItem {
     pub version_details: Vec<PokemonHeldItemVersion>,
 }
 
+/// <https://pokeapi.co/docs/v2.html#pokemonhelditemversion>
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
@@ -244,6 +257,7 @@ pub struct PokemonHeldItemVersion {
     pub rarity: u8,
 }
 
+/// <https://pokeapi.co/docs/v2.html#pokemonmove>
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
@@ -253,6 +267,7 @@ pub struct PokemonMove {
     pub version_group_details: Vec<PokemonMoveVersion>,
 }
 
+/// <https://pokeapi.co/docs/v2.html#pokemonmoveversion>
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
@@ -262,6 +277,7 @@ pub struct PokemonMoveVersion {
     pub level_learned_at: u8,
 }
 
+/// <https://pokeapi.co/docs/v2.html#pokemonstat>
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
@@ -271,6 +287,7 @@ pub struct PokemonStat {
     pub base_stat: u8,
 }
 
+/// <https://pokeapi.co/docs/v2.html#pokemonsprites>
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
@@ -285,6 +302,7 @@ pub struct PokemonSprites {
     pub back_shiny_female: Option<String>,
 }
 
+/// <https://pokeapi.co/docs/v2.html#locationareaencounter>
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
@@ -324,6 +342,7 @@ pub struct PokemonForm {
     pub form_names: Vec<Name>,
 }
 
+/// <https://pokeapi.co/docs/v2.html#pokemonformsprites>
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
@@ -357,6 +376,7 @@ pub struct PokemonShape {
     pub pokemon_species: Vec<NamedAPIResource<PokemonSpecies>>, // incorrectly documented as list PokemonSpecies
 }
 
+/// <https://pokeapi.co/docs/v2.html#awesomename>
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
@@ -397,6 +417,7 @@ pub struct PokemonSpecies {
     pub varieties: Vec<PokemonSpeciesVariety>,
 }
 
+/// <https://pokeapi.co/docs/v2.html#genus>
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
@@ -405,6 +426,7 @@ pub struct Genus {
     pub language: NamedAPIResource<Language>,
 }
 
+/// <https://pokeapi.co/docs/v2.html#pokemonspeciesdexentry>
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
@@ -413,6 +435,7 @@ pub struct PokemonSpeciesDexEntry {
     pub pokedex: NamedAPIResource<Pokedex>,
 }
 
+/// <https://pokeapi.co/docs/v2.html#palparkencounterarea>
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
@@ -422,6 +445,7 @@ pub struct PalParkEncounterArea {
     pub area: NamedAPIResource<PalParkArea>,
 }
 
+/// <https://pokeapi.co/docs/v2.html#pokemonspeciesvariety>
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
@@ -446,6 +470,7 @@ pub struct Stat {
     pub names: Vec<Name>,
 }
 
+/// <https://pokeapi.co/docs/v2.html#movestataffectsets>
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
@@ -454,6 +479,7 @@ pub struct MoveStatAffectSets {
     pub decrease: Vec<MoveStatAffect>,
 }
 
+/// <https://pokeapi.co/docs/v2.html#movestataffect>
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
@@ -463,6 +489,7 @@ pub struct MoveStatAffect {
     pub move_: NamedAPIResource<Move>,
 }
 
+/// <https://pokeapi.co/docs/v2.html#naturestataffectsets>
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
@@ -487,6 +514,7 @@ pub struct Type {
     pub moves: Vec<NamedAPIResource<Move>>,
 }
 
+/// <https://pokeapi.co/docs/v2.html#typepokemon>
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
@@ -495,6 +523,7 @@ pub struct TypePokemon {
     pub pokemon: NamedAPIResource<Pokemon>,
 }
 
+/// <https://pokeapi.co/docs/v2.html#typerelations>
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]

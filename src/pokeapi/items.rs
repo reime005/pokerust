@@ -30,6 +30,7 @@ pub struct Item {
     pub machines: Vec<MachineVersionDetail>,
 }
 
+/// <https://pokeapi.co/docs/v2.html#itemsprites>
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
@@ -37,6 +38,7 @@ pub struct ItemSprites {
     pub default: String,
 }
 
+/// <https://pokeapi.co/docs/v2.html#itemholderpokemon>
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
@@ -45,6 +47,7 @@ pub struct ItemHolderPokemon {
     pub version_details: Vec<ItemHolderPokemonVersionDetail>,
 }
 
+/// <https://pokeapi.co/docs/v2.html#itemholderpokemonversiondetail>
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]

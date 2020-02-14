@@ -27,6 +27,7 @@ pub struct Berry {
     pub natural_gift_type: NamedAPIResource<Type>,
 }
 
+/// <https://pokeapi.co/docs/v2.html#berryflavormap>
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
@@ -58,6 +59,7 @@ pub struct BerryFlavor {
     pub names: Vec<Name>,
 }
 
+/// <https://pokeapi.co/docs/v2.html#flavorberrymap>
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]

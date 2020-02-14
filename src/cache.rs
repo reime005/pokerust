@@ -5,6 +5,8 @@ use minreq::Response;
 use std::env;
 
 lazy_static! {
+    /// Pokeapi endpoint. Can be set with the `POKERUST_ENDPOINT` environment
+    /// variable. Defaults to <https://pokeapi.co/api/v2/>.
     pub static ref ENDPOINT: String = match env::var("POKERUST_ENDPOINT") {
         Ok(val) => val,
         Err(env::VarError::NotPresent) => String::from("https://pokeapi.co/api/v2/"),

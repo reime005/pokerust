@@ -18,6 +18,7 @@ pub struct ContestType {
     pub names: Vec<ContestName>,
 }
 
+/// <https://pokeapi.co/docs/v2.html#contestname>
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]

@@ -35,6 +35,7 @@ pub struct LocationArea {
     pub pokemon_encounters: Vec<PokemonEncouter>,
 }
 
+/// <https://pokeapi.co/docs/v2.html#encountermethodrate>
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
@@ -43,6 +44,7 @@ pub struct EncouterMethodRate {
     pub version_details: Vec<EncounterVersionDetails>,
 }
 
+/// <https://pokeapi.co/docs/v2.html#encounterversiondetails>
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
@@ -51,6 +53,7 @@ pub struct EncounterVersionDetails {
     pub version: NamedAPIResource<Version>,
 }
 
+/// <https://pokeapi.co/docs/v2.html#pokemonencounter>
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
@@ -70,6 +73,7 @@ pub struct PalParkArea {
     pub pokemon_encounters: Vec<PalParkEncounterSpecies>,
 }
 
+/// <https://pokeapi.co/docs/v2.html#palparkencounterspecies>
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]

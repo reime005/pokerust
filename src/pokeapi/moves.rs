@@ -40,6 +40,7 @@ pub struct Move {
     pub type_: NamedAPIResource<Type>,
 }
 
+/// <https://pokeapi.co/docs/v2.html#contestcombosets>
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
@@ -49,6 +50,7 @@ pub struct ContestComboSets {
     pub super_: ContestComboDetail,
 }
 
+/// <https://pokeapi.co/docs/v2.html#contestcombodetail>
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
@@ -57,6 +59,7 @@ pub struct ContestComboDetail {
     pub use_after: Option<Vec<NamedAPIResource<Move>>>,
 }
 
+/// <https://pokeapi.co/docs/v2.html#moveflavortext>
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
@@ -66,6 +69,7 @@ pub struct MoveFlavorText {
     pub version_group: NamedAPIResource<VersionGroup>, // incorrectly documented as list NamedAPIResource (Move)
 }
 
+/// <https://pokeapi.co/docs/v2.html#movemetadata>
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
@@ -84,6 +88,7 @@ pub struct MoveMetaData {
     pub stat_chance: u8,
 }
 
+/// <https://pokeapi.co/docs/v2.html#movestatchange>
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
@@ -92,6 +97,7 @@ pub struct MoveStatChange {
     pub stat: NamedAPIResource<Stat>,
 }
 
+/// <https://pokeapi.co/docs/v2.html#pastmovestatvalues>
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]

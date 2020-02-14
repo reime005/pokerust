@@ -39,6 +39,7 @@ pub struct Pokedex {
     pub version_groups: Vec<NamedAPIResource<VersionGroup>>,
 }
 
+/// <https://pokeapi.co/docs/v2.html#pokemonentry>
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]

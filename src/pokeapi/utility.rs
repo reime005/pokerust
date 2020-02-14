@@ -31,6 +31,7 @@ pub struct Language {
     pub names: Vec<Name>,
 }
 
+/// <https://pokeapi.co/docs/v2.html#apiresource>
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
@@ -58,6 +59,7 @@ where
 unsafe impl<T> Send for APIResource<T> {}
 unsafe impl<T> Sync for APIResource<T> {}
 
+/// <https://pokeapi.co/docs/v2.html#description>
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
@@ -66,6 +68,7 @@ pub struct Description {
     pub language: NamedAPIResource<Language>,
 }
 
+/// <https://pokeapi.co/docs/v2.html#effect>
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
@@ -74,6 +77,7 @@ pub struct Effect {
     pub language: NamedAPIResource<Language>,
 }
 
+/// <https://pokeapi.co/docs/v2.html#encounter>
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
@@ -85,6 +89,7 @@ pub struct Encounter {
     pub method: NamedAPIResource<EncounterMethod>,
 }
 
+/// <https://pokeapi.co/docs/v2.html#flavortext>
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
@@ -94,6 +99,7 @@ pub struct FlavorText {
     pub version: Option<NamedAPIResource<Version>>, // sometimes this isn't provided, e.g. https://pokeapi.co/api/v2/contest-effect/9/
 }
 
+/// <https://pokeapi.co/docs/v2.html#generationgameindex>
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
@@ -102,6 +108,7 @@ pub struct GenerationGameIndex {
     pub generation: NamedAPIResource<Generation>,
 }
 
+/// <https://pokeapi.co/docs/v2.html#machineversiondetail>
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
@@ -110,6 +117,7 @@ pub struct MachineVersionDetail {
     pub version_group: NamedAPIResource<VersionGroup>,
 }
 
+/// <https://pokeapi.co/docs/v2.html#name>
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
@@ -118,6 +126,7 @@ pub struct Name {
     pub language: NamedAPIResource<Language>,
 }
 
+/// <https://pokeapi.co/docs/v2.html#namedapiresource>
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
@@ -152,6 +161,7 @@ where
 unsafe impl<T> Send for NamedAPIResource<T> {}
 unsafe impl<T> Sync for NamedAPIResource<T> {}
 
+/// <https://pokeapi.co/docs/v2.html#verboseeffect>
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
@@ -161,6 +171,7 @@ pub struct VerboseEffect {
     pub language: NamedAPIResource<Language>,
 }
 
+/// <https://pokeapi.co/docs/v2.html#versionencounterdetail>
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
@@ -170,6 +181,7 @@ pub struct VersionEncounterDetail {
     pub encounter_details: Vec<Encounter>,
 }
 
+/// <https://pokeapi.co/docs/v2.html#versiongameindex>
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
@@ -178,6 +190,7 @@ pub struct VersionGameIndex {
     pub version: NamedAPIResource<Version>,
 }
 
+/// <https://pokeapi.co/docs/v2.html#versiongroupflavortext>
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]

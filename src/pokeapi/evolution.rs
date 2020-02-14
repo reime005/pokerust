@@ -19,6 +19,7 @@ pub struct EvolutionChain {
     pub chain: ChainLink,
 }
 
+/// <https://pokeapi.co/docs/v2.html#chainlink>
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
@@ -29,6 +30,7 @@ pub struct ChainLink {
     pub evolves_to: Vec<ChainLink>,
 }
 
+/// <https://pokeapi.co/docs/v2.html#evolutiondetail>
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]

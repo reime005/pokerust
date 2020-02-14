@@ -54,6 +54,9 @@ where
     }
 }
 
+unsafe impl<T> Send for APIResource<T> {}
+unsafe impl<T> Sync for APIResource<T> {}
+
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
@@ -144,6 +147,9 @@ where
         get_resource(get_api_loc_from_url(&self.url))?.json::<T>()
     }
 }
+
+unsafe impl<T> Send for NamedAPIResource<T> {}
+unsafe impl<T> Sync for NamedAPIResource<T> {}
 
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]

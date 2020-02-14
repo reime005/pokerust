@@ -8,6 +8,7 @@ use super::utility::*;
 
 use crate::{impl_id_and_named, set_endpoint};
 
+/// <https://pokeapi.co/docs/v2.html#locations>
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
@@ -20,6 +21,7 @@ pub struct Location {
     pub areas: Vec<NamedAPIResource<LocationArea>>,
 }
 
+/// <https://pokeapi.co/docs/v2.html#location-areas>
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
@@ -57,6 +59,7 @@ pub struct PokemonEncouter {
     pub version_details: Vec<VersionEncounterDetail>,
 }
 
+/// <https://pokeapi.co/docs/v2.html#pal-park-areas>
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
@@ -76,6 +79,7 @@ pub struct PalParkEncounterSpecies {
     pub pokemon_species: NamedAPIResource<PokemonSpecies>,
 }
 
+/// <https://pokeapi.co/docs/v2.html#regions>
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]

@@ -5,6 +5,7 @@ use super::utility::*;
 
 use crate::{impl_id_and_named, set_endpoint};
 
+/// <https://pokeapi.co/docs/v2.html#encounter-methods>
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
@@ -15,6 +16,7 @@ pub struct EncounterMethod {
     pub names: Vec<Name>,
 }
 
+/// <https://pokeapi.co/docs/v2.html#encounter-conditions>
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
@@ -25,6 +27,7 @@ pub struct EncounterCondition {
     pub values: Vec<NamedAPIResource<EncounterConditionValue>>,
 }
 
+/// <https://pokeapi.co/docs/v2.html#encounter-condition-values>
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]

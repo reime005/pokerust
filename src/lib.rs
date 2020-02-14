@@ -103,17 +103,18 @@ pub trait Named {
     fn name(&self) -> &String;
 }
 
-/// Trait for API objects with an id.
+/// Trait for API objects with an ID.
 pub trait Id {
-    /// Get the id of this object.
+    /// Get the ID of this object.
     fn id(&self) -> i16;
 }
 
+/// API resources that can be retrived from an ID.
 pub trait FromId: Id + Endpoint
 where
     Self: Sized,
 {
-    /// Retrieve the API object of this type with this id.
+    /// Retrieve the API object of this type with this ID.
     fn from_id(id: i16) -> Result<Self, minreq::Error>;
 }
 
@@ -123,6 +124,7 @@ impl<T: Endpoint + Id + DeserializeOwned> FromId for T {
     }
 }
 
+/// API resources that can be retrived from a name.
 pub trait FromName: Named + Endpoint
 where
     Self: Sized,

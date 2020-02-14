@@ -8,6 +8,7 @@ use super::utility::*;
 
 use crate::{impl_id_and_named, set_endpoint};
 
+/// <https://pokeapi.co/docs/v2.html#berries>
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
@@ -34,6 +35,7 @@ pub struct BerryFlavorMap {
     pub flavor: NamedAPIResource<BerryFlavor>,
 }
 
+/// <https://pokeapi.co/docs/v2.html#berry-firmnesses>
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
@@ -44,6 +46,7 @@ pub struct BerryFirmness {
     pub names: Vec<Name>,
 }
 
+/// <https://pokeapi.co/docs/v2.html#berry-flavors>
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]

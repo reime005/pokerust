@@ -8,6 +8,7 @@ use super::utility::*;
 
 use crate::{impl_id_and_named, set_endpoint};
 
+/// <https://pokeapi.co/docs/v2.html#generations>
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
@@ -23,6 +24,7 @@ pub struct Generation {
     pub version_groups: Vec<NamedAPIResource<VersionGroup>>,
 }
 
+/// <https://pokeapi.co/docs/v2.html#pokedexes>
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
@@ -45,6 +47,7 @@ pub struct PokemonEntry {
     pub pokemon_species: NamedAPIResource<PokemonSpecies>,
 }
 
+/// <https://pokeapi.co/docs/v2.html#version>
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
@@ -55,6 +58,7 @@ pub struct Version {
     pub version_group: NamedAPIResource<VersionGroup>,
 }
 
+/// <https://pokeapi.co/docs/v2.html#version-groups>
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]

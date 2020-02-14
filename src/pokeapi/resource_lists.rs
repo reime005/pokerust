@@ -6,6 +6,7 @@ use super::utility::*;
 
 use crate::cache::get_resource;
 
+/// <https://pokeapi.co/docs/v2.html#un-named>
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
@@ -16,6 +17,7 @@ pub struct APIResourceList<T> {
     pub results: Vec<APIResource<T>>,
 }
 
+/// <https://pokeapi.co/docs/v2.html#named>
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]

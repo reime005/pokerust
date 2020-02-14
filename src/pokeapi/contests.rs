@@ -7,6 +7,7 @@ use super::utility::*;
 
 use crate::{impl_id, impl_id_and_named, set_endpoint};
 
+/// <https://pokeapi.co/docs/v2.html#contests-section>
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
@@ -26,6 +27,7 @@ pub struct ContestName {
     pub language: NamedAPIResource<Language>,
 }
 
+/// <https://pokeapi.co/docs/v2.html#contest-effects>
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
@@ -37,6 +39,7 @@ pub struct ContestEffect {
     pub flavor_text_entries: Vec<FlavorText>,
 }
 
+/// <https://pokeapi.co/docs/v2.html#super-contest-effects>
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]

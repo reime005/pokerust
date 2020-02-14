@@ -9,6 +9,7 @@ use super::utility::*;
 
 use crate::{impl_id, impl_id_and_named, set_endpoint};
 
+/// <https://pokeapi.co/docs/v2.html#evolution-chains>
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
@@ -52,6 +53,7 @@ pub struct EvolutionDetail {
     pub turn_upside_down: bool,
 }
 
+/// <https://pokeapi.co/docs/v2.html#evolution-triggers>
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]

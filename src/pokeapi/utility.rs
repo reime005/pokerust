@@ -18,6 +18,7 @@ fn id_from_url(url: &str) -> i16 {
     url[(url.rfind('/').unwrap() + 1)..].parse().unwrap()
 }
 
+/// <https://pokeapi.co/docs/v2.html#languages>
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]

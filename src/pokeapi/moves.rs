@@ -9,6 +9,7 @@ use super::utility::*;
 
 use crate::{impl_id_and_named, set_endpoint};
 
+/// <https://pokeapi.co/docs/v2.html#moves>
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
@@ -105,6 +106,7 @@ pub struct PastMoveStatValues {
     pub version_group: NamedAPIResource<VersionGroup>,
 }
 
+/// <https://pokeapi.co/docs/v2.html#move-ailments>
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
@@ -115,6 +117,7 @@ pub struct MoveAilment {
     pub names: Vec<Name>,
 }
 
+/// <https://pokeapi.co/docs/v2.html#move-battle-styles>
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
@@ -125,6 +128,7 @@ pub struct MoveBattleStyle {
 }
 
 // incorrectly documeted as ModelName
+/// <https://pokeapi.co/docs/v2.html#move-categories>
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
@@ -135,6 +139,7 @@ pub struct MoveCategory {
     pub descriptions: Vec<Description>,
 }
 
+/// <https://pokeapi.co/docs/v2.html#move-damage-classes>
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
@@ -146,6 +151,7 @@ pub struct MoveDamageClass {
     pub names: Vec<Name>,
 }
 
+/// <https://pokeapi.co/docs/v2.html#move-learn-methods>
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
@@ -157,6 +163,7 @@ pub struct MoveLearnMethod {
     pub version_groups: Vec<NamedAPIResource<VersionGroup>>,
 }
 
+/// <https://pokeapi.co/docs/v2.html#move-targets>
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]

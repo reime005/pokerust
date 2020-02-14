@@ -8,6 +8,7 @@ use super::utility::*;
 
 use crate::{impl_id_and_named, set_endpoint};
 
+/// <https://pokeapi.co/docs/v2.html#item>
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
@@ -52,6 +53,7 @@ pub struct ItemHolderPokemonVersionDetail {
     pub version: NamedAPIResource<Version>,
 }
 
+/// <https://pokeapi.co/docs/v2.html#item-attributes>
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
@@ -63,6 +65,7 @@ pub struct ItemAttribute {
     pub descriptions: Vec<Description>,
 }
 
+/// <https://pokeapi.co/docs/v2.html#item-categories>
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
@@ -74,6 +77,7 @@ pub struct ItemCategory {
     pub pocket: NamedAPIResource<ItemPocket>,
 }
 
+/// <https://pokeapi.co/docs/v2.html#item-fling-effects>
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]
@@ -84,6 +88,7 @@ pub struct ItemFlingEffect {
     pub items: Vec<NamedAPIResource<Item>>, // incorrectly documented as NamedAPIResource
 }
 
+/// <https://pokeapi.co/docs/v2.html#item-pockets>
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]

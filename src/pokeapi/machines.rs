@@ -8,6 +8,7 @@ use super::utility::*;
 
 use crate::{impl_id, set_endpoint};
 
+/// <https://pokeapi.co/docs/v2.html#machines>
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
 #[non_exhaustive]

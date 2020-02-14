@@ -43,7 +43,36 @@ where
     fn previous_list(&self) -> Result<Option<Self>, minreq::Error>;
 }
 
-impl<T> List for NamedAPIResourceList<T>
+// impl<T> List for NamedAPIResourceList<T>
+// where
+//     T: DeserializeOwned
+// {
+//     fn count(&self) -> &u64 {
+//         &self.count
+//     }
+//
+//     fn next_list(&self) -> Result<Option<Self>, minreq::Error> {
+//         if let Some(loc) = &self.next {
+//             let list = get_resource(get_api_loc_from_url(&loc))?.json::<Self>()?;
+//             Ok(Some(list))
+//         } else {
+//             Ok(None)
+//         }
+//     }
+//
+//     fn previous_list(&self) -> Result<Option<Self>, minreq::Error> {
+//         if let Some(loc) = &self.next {
+//             let list = get_resource(get_api_loc_from_url(&loc))?.json::<Self>()?;
+//             Ok(Some(list))
+//         } else {
+//             Ok(None)
+//         }
+//     }
+// }
+
+macro_rules! impl_list {
+    { $A:tt } => {
+impl<T> List for $A<T>
 where
     T: DeserializeOwned,
 {
@@ -69,3 +98,8 @@ where
         }
     }
 }
+}
+}
+
+impl_list! {APIResourceList}
+impl_list! {NamedAPIResourceList}

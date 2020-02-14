@@ -1,4 +1,7 @@
 # Pokérust
+![Crates.io](https://img.shields.io/crates/v/pokerust?style=flat-square)
+![Crates.io](https://img.shields.io/crates/d/pokerust?style=flat-square)
+![Crates.io](https://img.shields.io/crates/l/pokerust?style=flat-square)
 
 Wrapper library for <https://pokeapi.co/> v2 with caching support.
 

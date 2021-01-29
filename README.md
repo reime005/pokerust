@@ -1,3 +1,5 @@
+# This is forked from https://gitlab.com/lunik1/pokerust (the official repo)
+
 # Pokérust
 
 [![Crates.io](https://img.shields.io/crates/v/pokerust?style=flat-square)](https://crates.io/crates/pokerust)

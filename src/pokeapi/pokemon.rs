@@ -300,8 +300,178 @@ pub struct PokemonSprites {
     pub back_shiny: Option<String>,
     pub back_female: Option<String>,
     pub back_shiny_female: Option<String>,
+    pub other: OtherSprites,
+    pub versions: VersionSprites,
 }
 
+/// <https://pokeapi.co/docs/v2.html#pokemonsprites>
+#[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
+#[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
+#[non_exhaustive]
+pub struct VersionSidesSprites {
+    pub front_default: Option<String>,
+    pub front_gray: Option<String>,
+    pub front_shiny: Option<String>,
+    pub front_female: Option<String>,
+    pub front_shiny_female: Option<String>,
+    pub back_default: Option<String>,
+    pub back_gray: Option<String>,
+    pub back_shiny: Option<String>,
+    pub back_female: Option<String>,
+    pub back_shiny_female: Option<String>,
+}
+
+/// <https://pokeapi.co/docs/v2.html#pokemonsprites>
+#[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
+#[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
+#[non_exhaustive]
+pub struct OtherSprites {
+    pub dream_world: DreamWorldSprites,
+    #[serde(rename = "official-artwork")]
+    pub official_artwork: OfficialArtWorkSprites,
+}
+
+/// <https://pokeapi.co/docs/v2.html#pokemonsprites>
+#[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
+#[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
+#[non_exhaustive]
+pub struct DreamWorldSprites {
+    pub front_default: Option<String>,
+    pub front_female: Option<String>,
+}
+
+/// <https://pokeapi.co/docs/v2.html#pokemonsprites>
+#[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
+#[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
+#[non_exhaustive]
+pub struct OfficialArtWorkSprites {
+    pub front_default: Option<String>,
+}
+
+/// <https://pokeapi.co/docs/v2.html#pokemonsprites>
+#[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
+#[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
+#[non_exhaustive]
+pub struct VersionSprites {
+    #[serde(rename = "generation-i")]
+    pub generation_i: Generation1Sprites,
+    #[serde(rename = "generation-ii")]
+    pub generation_ii: Generation2Sprites,
+    #[serde(rename = "generation-iii")]
+    pub generation_iii: Generation3Sprites,
+    #[serde(rename = "generation-iv")]
+    pub generation_iv: Generation4Sprites,
+    #[serde(rename = "generation-v")]
+    pub generation_v: Generation5Sprites,
+    #[serde(rename = "generation-vi")]
+    pub generation_vi: Generation6Sprites,
+    #[serde(rename = "generation-vii")]
+    pub generation_vii: Generation7Sprites,
+    #[serde(rename = "generation-viii")]
+    pub generation_viii: Generation8Sprites,
+}
+
+/// <https://pokeapi.co/docs/v2.html#pokemonsprites>
+#[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
+#[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
+#[non_exhaustive]
+pub struct Generation1Sprites {
+    #[serde(rename = "red-blue")]
+    pub red_blue: VersionSidesSprites,
+    pub yellow: VersionSidesSprites,
+}
+
+/// <https://pokeapi.co/docs/v2.html#pokemonsprites>
+#[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
+#[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
+#[non_exhaustive]
+pub struct Generation2Sprites {
+    pub crystal: VersionSidesSprites,
+    pub gold: VersionSidesSprites,
+    pub silver: VersionSidesSprites,
+}
+
+/// <https://pokeapi.co/docs/v2.html#pokemonsprites>
+#[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
+#[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
+#[non_exhaustive]
+pub struct Generation3Sprites {
+    pub emerald: VersionSidesSprites,
+    #[serde(rename = "firered-leafgreen")]
+    pub firered_leafgreen: VersionSidesSprites,
+    #[serde(rename = "ruby-sapphire")]
+    pub ruby_sapphire: VersionSidesSprites,
+}
+
+/// <https://pokeapi.co/docs/v2.html#pokemonsprites>
+#[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
+#[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
+#[non_exhaustive]
+pub struct Generation4Sprites {
+    #[serde(rename = "diamond-pearl")]
+    pub diamond_pearl: VersionSidesSprites,
+    #[serde(rename = "heartgold-soulsilver")]
+    pub heartgold_soulsilver: VersionSidesSprites,
+    pub platinum: VersionSidesSprites,
+}
+
+/// <https://pokeapi.co/docs/v2.html#pokemonsprites>
+#[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
+#[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
+#[non_exhaustive]
+pub struct Generation5Sprites {
+    #[serde(rename = "black-white")]
+    pub black_white: WithAnimatedVersionSidesSprites,
+}
+
+/// <https://pokeapi.co/docs/v2.html#pokemonsprites>
+#[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
+#[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
+#[non_exhaustive]
+pub struct WithAnimatedVersionSidesSprites {
+    pub front_default: Option<String>,
+    pub front_gray: Option<String>,
+    pub front_shiny: Option<String>,
+    pub front_female: Option<String>,
+    pub front_shiny_female: Option<String>,
+    pub back_default: Option<String>,
+    pub back_gray: Option<String>,
+    pub back_shiny: Option<String>,
+    pub back_female: Option<String>,
+    pub back_shiny_female: Option<String>,
+    pub animated: VersionSidesSprites,
+}
+
+/// <https://pokeapi.co/docs/v2.html#pokemonsprites>
+#[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
+#[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
+#[non_exhaustive]
+pub struct Generation6Sprites {
+    #[serde(rename = "omegaruby-alphasapphire")]
+    pub omegaruby_alphasapphire: VersionSidesSprites,
+    #[serde(rename = "x-y")]
+    pub x_y: VersionSidesSprites,
+}
+
+/// <https://pokeapi.co/docs/v2.html#pokemonsprites>
+#[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
+#[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
+#[non_exhaustive]
+pub struct Generation7Sprites {
+    #[serde(rename = "ultra-sun-ultra-moon")]
+    pub ultra_sun_ultra_moon: VersionSidesSprites,
+    pub icons: VersionSidesSprites,
+}
+
+/// <https://pokeapi.co/docs/v2.html#pokemonsprites>
+#[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
+#[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]
+#[non_exhaustive]
+pub struct Generation8Sprites {
+    pub icons: VersionSidesSprites,
+}
+
+/// <https://pokeapi.co/docs/v2.html#pokemonsprites>
 /// <https://pokeapi.co/docs/v2.html#locationareaencounter>
 #[cfg_attr(debug_assertions, serde(deny_unknown_fields))]
 #[derive(Serialize, Deserialize, Debug, Clone, PartialEq, Eq, Hash)]

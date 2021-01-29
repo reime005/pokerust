@@ -27,3 +27,6 @@ paste = "0.1"
 lto = true
 codegen-units = 1
 incremental = false
+
+[workspace]
+members = ["examples/*"]
